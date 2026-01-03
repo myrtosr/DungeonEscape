@@ -6,7 +6,16 @@ void GameState::updateStartScreen()
 {
 	graphics::MouseState ms;
 	graphics::getMouseState(ms);
-	if (ms.button_left_pressed)
+
+	// Avoiding phantom clicks -> black padding = innactive space 
+	float cx = window2canvasX(ms.cur_pos_x);
+	float cy = window2canvasY(ms.cur_pos_y);
+	bool inside_canvas =
+		cx >= 0 && cx <= CANVAS_WIDTH &&
+		cy >= 0 && cy <= CANVAS_HEIGHT;
+
+	
+	if (ms.button_left_pressed && inside_canvas)
 		status = STATUS_PLAYING;
 }
 
