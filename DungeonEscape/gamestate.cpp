@@ -29,13 +29,13 @@ void GameState::drawStartScreen()
 
 	br.texture = "";
 	char info[40];
-	sprintf_s(info, "Start Game");
-	graphics::drawText(CANVAS_WIDTH * 0.455, CANVAS_HEIGHT * 0.55, 30, info, br);
+	sprintf_s(info, "Enter the Dungeon");
+	graphics::drawText(CANVAS_WIDTH * 0.405, CANVAS_HEIGHT * 0.50, 30, info, br);
 
 	graphics::MouseState ms;
 	graphics::getMouseState(ms);
 	br.texture = std::string(ASSET_PATH) + "cursor.png";
-	graphics::drawRect(window2canvasX(ms.cur_pos_x), window2canvasY(ms.cur_pos_y), 30, 30, br);
+	graphics::drawRect(window2canvasX(ms.cur_pos_x), window2canvasY(ms.cur_pos_y), 50, 50, br);
 }
 
 void GameState::drawLevelScreen()
