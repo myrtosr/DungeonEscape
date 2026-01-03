@@ -10,7 +10,7 @@ void update(float ms) {
 // Window drawing function
 void draw() {
     GameState* game = reinterpret_cast<GameState*>(graphics::getUserData());
-    game->update();
+    game->draw();
 }
 
 int main() {
