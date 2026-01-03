@@ -9,7 +9,7 @@ void draw() {
 }
 
 int main() {
-
+    // lets hope this works
     graphics::createWindow(1366, 768, "Tutorial");
 
 
@@ -19,8 +19,8 @@ int main() {
     graphics::setCanvasSize(1366, 768);
     graphics::setCanvasScaleMode(graphics::CANVAS_SCALE_FIT);
 
-   
+
     graphics::startMessageLoop();
- 
-	return 0;
+
+    return 0;
 }
