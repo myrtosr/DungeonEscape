@@ -76,14 +76,29 @@ void GameState::init()
 {
 }
 
+// check implementation
 float GameState::window2canvasX(float x)
 {
-	return x * CANVAS_WIDTH / (float)window_width;
-}
+	float scale = std::min(
+		window_width / (float)CANVAS_WIDTH,
+		window_height / (float)CANVAS_HEIGHT
+	);
 
+	float offset_x = (window_width - CANVAS_WIDTH * scale) / 2.0f;
+
+	return (x - offset_x) / scale;
+}
+// check implementation
 float GameState::window2canvasY(float y)
 {
-	return y * CANVAS_HEIGHT / (float)window_height;
+	float scale = std::min(
+		window_width / (float)CANVAS_WIDTH,
+		window_height / (float)CANVAS_HEIGHT
+	);
+
+	float offset_y = (window_height - CANVAS_HEIGHT * scale) / 2.0f;
+
+	return (y - offset_y) / scale;
 }
 
 GameState::GameState()

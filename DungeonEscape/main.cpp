@@ -13,6 +13,11 @@ void draw() {
     game->draw();
 }
 
+void resize(int w, int h) {
+    GameState* game = reinterpret_cast<GameState*>(graphics::getUserData());
+    game->setWindowDimensions((unsigned int)w, (unsigned int)h);
+}
+
 int main() {
     GameState mygame;
 
@@ -23,6 +28,7 @@ int main() {
     // Callback functions
     graphics::setDrawFunction(draw);
     graphics::setUpdateFunction(update);
+    graphics::setResizeFunction(resize);
 
     graphics::setCanvasSize(CANVAS_WIDTH, CANVAS_HEIGHT);
     graphics::setCanvasScaleMode(graphics::CANVAS_SCALE_FIT);
