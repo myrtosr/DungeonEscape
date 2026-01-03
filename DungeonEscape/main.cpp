@@ -22,5 +22,7 @@ int main() {
 
     graphics::startMessageLoop();
 
+    int a = 0;
+
     return 0;
 }
