@@ -10,13 +10,13 @@ void draw() {
 
 int main() {
     // lets hope this works
-    graphics::createWindow(1920, 1000, "Tutorial");
+    graphics::createWindow(1366, 768, "Tutorial");
 
 
     graphics::setDrawFunction(draw);
     graphics::setUpdateFunction(update);
 
-    graphics::setCanvasSize(1920, 1000);
+    graphics::setCanvasSize(1366, 768);
     graphics::setCanvasScaleMode(graphics::CANVAS_SCALE_FIT);
 
 
