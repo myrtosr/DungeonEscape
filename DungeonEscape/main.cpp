@@ -1,28 +1,34 @@
 #include "sgg/graphics.h"
+#include "gamestate.h"
+#include "config.h"
 
 void update(float ms) {
-
+    GameState* game = reinterpret_cast<GameState*>(graphics::getUserData());
+    game->update();
 }
 
+// Window drawing function
 void draw() {
-
+    GameState* game = reinterpret_cast<GameState*>(graphics::getUserData());
+    game->update();
 }
 
 int main() {
-    // lets hope this works
-    graphics::createWindow(1366, 768, "Tutorial");
+    GameState mygame;
 
+    graphics::createWindow(WINDOW_WIDTH, WINDOW_HEIGHT, "Dungeon Escape");
 
+    graphics::setUserData(&mygame);
+
+    // Callback functions
     graphics::setDrawFunction(draw);
     graphics::setUpdateFunction(update);
 
-    graphics::setCanvasSize(1366, 768);
+    graphics::setCanvasSize(CANVAS_WIDTH, CANVAS_HEIGHT);
     graphics::setCanvasScaleMode(graphics::CANVAS_SCALE_FIT);
 
-
+    mygame.init();
     graphics::startMessageLoop();
-
-    int a = 0;
 
     return 0;
 }
