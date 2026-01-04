@@ -19,11 +19,14 @@ public:
 		: id(id), roomFromId(from), roomToId(to) {
 	};
 
-	// getWeight method
-	int getWeight();
+	// getWeight 
+	int getWeight() { return weight; }
+
+	// setWeight
+	int setWeight(int w) { weight = w; }
 
 	// unlock
-	void unlock();
+	void unlock() { accessible = true; }
 
 	// getId
 	int getId() const { return id; }

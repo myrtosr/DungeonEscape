@@ -143,7 +143,6 @@
     <ClCompile Include="gameobject.cpp" />
     <ClCompile Include="gamestate.cpp" />
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="passage.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="config.h" />
