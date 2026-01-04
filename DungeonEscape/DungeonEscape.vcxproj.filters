@@ -47,5 +47,8 @@
     <ClInclude Include="doors.h">
       <Filter>Header Files\Dungeon</Filter>
     </ClInclude>
+    <ClInclude Include="gameobject.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
