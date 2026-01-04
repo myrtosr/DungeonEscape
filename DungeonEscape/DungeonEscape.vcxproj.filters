@@ -24,6 +24,21 @@
     <ClCompile Include="gamestate.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="door.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="gameobject.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="graphobject.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="path\path.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="roomnode.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="gamestate.h">
@@ -41,14 +56,17 @@
     <ClInclude Include="roomnode.h">
       <Filter>Header Files\Dungeon</Filter>
     </ClInclude>
-    <ClInclude Include="paths.h">
-      <Filter>Header Files\Dungeon</Filter>
-    </ClInclude>
-    <ClInclude Include="doors.h">
-      <Filter>Header Files\Dungeon</Filter>
-    </ClInclude>
     <ClInclude Include="gameobject.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="tilecoord.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="door.h">
+      <Filter>Header Files\Dungeon</Filter>
+    </ClInclude>
+    <ClInclude Include="path.h">
+      <Filter>Header Files\Dungeon</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
