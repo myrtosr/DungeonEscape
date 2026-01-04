@@ -33,10 +33,7 @@
     <ClCompile Include="door.cpp">
       <Filter>Source Files\Dungeon</Filter>
     </ClCompile>
-    <ClCompile Include="path\path.cpp">
-      <Filter>Source Files\Dungeon</Filter>
-    </ClCompile>
-    <ClCompile Include="roomnode.cpp">
+    <ClCompile Include="path\passage.cpp">
       <Filter>Source Files\Dungeon</Filter>
     </ClCompile>
   </ItemGroup>
@@ -62,7 +59,7 @@
     <ClInclude Include="door.h">
       <Filter>Header Files\Dungeon</Filter>
     </ClInclude>
-    <ClInclude Include="path.h">
+    <ClInclude Include="passage.h">
       <Filter>Header Files\Dungeon</Filter>
     </ClInclude>
   </ItemGroup>

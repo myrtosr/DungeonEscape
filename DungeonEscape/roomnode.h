@@ -1,30 +1,23 @@
 #pragma once
-#include "door.h"
-#include "tilecoord.h"
-#include <vector>
-
-using std::vector;
 
 
 class RoomNode {
 	int id;
-	int x, y, w, h; // bounds
-	vector<Door&> doors;
-	vector<TileCoord> tiles;   // tiles room
+	bool available = false;
+	bool explored = false;
+
 public:
 
 	// Constructor
-	RoomNode(int id, int x, int y, int w, int h);
-	
-	// connectDoor method
-	void connectDoor(int doorId);
+	RoomNode(int id_) : id(id_) {};
 
 	// Getters
-	int getX() const { return x; }
-	int getY() const { return y; }
-	int getWidth() const { return w; }
-	int getHeight() const { return h;  }
-	const vector<Door>& getDoors() const { return doors; }
 	int getId() const { return id; }
+	bool isAvailable() { return available;  }
+	bool isExplored() { return explored; }
+
+	// Setters
+	void setAvailable(bool a) { available = a; }
+	void setExplored(bool a) { explored = a;  }
 
 };
