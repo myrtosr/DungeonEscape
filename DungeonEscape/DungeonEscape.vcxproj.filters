@@ -39,9 +39,6 @@
     <ClCompile Include="roomnode.cpp">
       <Filter>Source Files\Dungeon</Filter>
     </ClCompile>
-    <ClCompile Include="graphobject.cpp">
-      <Filter>Source Files\Dungeon</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="gamestate.h">
@@ -51,9 +48,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="dungeongraph.h">
-      <Filter>Header Files\Dungeon</Filter>
-    </ClInclude>
-    <ClInclude Include="graphobject.h">
       <Filter>Header Files\Dungeon</Filter>
     </ClInclude>
     <ClInclude Include="roomnode.h">

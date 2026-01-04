@@ -1,5 +1,4 @@
 #pragma once
-#include "graphobject.h"
 #include "door.h"
 #include "tilecoord.h"
 #include <vector>
@@ -7,7 +6,8 @@
 using std::vector;
 
 
-class RoomNode : public GraphObject {
+class RoomNode {
+	int id;
 	int x, y, w, h; // bounds
 	vector<Door&> doors;
 	vector<TileCoord> tiles;   // tiles room
@@ -25,5 +25,6 @@ public:
 	int getWidth() const { return w; }
 	int getHeight() const { return h;  }
 	const vector<Door>& getDoors() const { return doors; }
+	int getId() const { return id; }
 
 };

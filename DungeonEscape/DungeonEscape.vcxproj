@@ -143,7 +143,6 @@
     <ClCompile Include="door.cpp" />
     <ClCompile Include="gameobject.cpp" />
     <ClCompile Include="gamestate.cpp" />
-    <ClCompile Include="graphobject.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="path\path.cpp" />
     <ClCompile Include="roomnode.cpp" />
@@ -154,7 +153,6 @@
     <ClInclude Include="dungeongraph.h" />
     <ClInclude Include="gameobject.h" />
     <ClInclude Include="gamestate.h" />
-    <ClInclude Include="graphobject.h" />
     <ClInclude Include="path.h" />
     <ClInclude Include="roomnode.h" />
     <ClInclude Include="tilecoord.h" />

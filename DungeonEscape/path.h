@@ -1,5 +1,4 @@
 #pragma once
-#include "graphobject.h"
 #include "roomnode.h"
 #include "door.h"
 #include <vector>
@@ -8,8 +7,10 @@
 using namespace std;
 
 
-class Path : GraphObject {
+class Path {
 public:
+
+	int id;
 
 	RoomNode* roomFromId;
 	RoomNode* roomToId;
@@ -34,4 +35,7 @@ public:
 
 	// unlock
 	void unlock();
+
+	// getId
+	int getId() const { return id; }
 };
