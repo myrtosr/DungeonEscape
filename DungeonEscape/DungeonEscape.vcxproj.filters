@@ -16,6 +16,9 @@
     <Filter Include="Header Files\Dungeon">
       <UniqueIdentifier>{709437c2-ec78-45a9-a1c8-a4230f25873b}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Dungeon">
+      <UniqueIdentifier>{17f71064-2dfc-440e-ba6c-036c5008fcff}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -24,20 +27,20 @@
     <ClCompile Include="gamestate.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="door.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="gameobject.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="graphobject.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="door.cpp">
+      <Filter>Source Files\Dungeon</Filter>
     </ClCompile>
     <ClCompile Include="path\path.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\Dungeon</Filter>
     </ClCompile>
     <ClCompile Include="roomnode.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\Dungeon</Filter>
+    </ClCompile>
+    <ClCompile Include="graphobject.cpp">
+      <Filter>Source Files\Dungeon</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
