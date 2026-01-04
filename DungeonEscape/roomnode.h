@@ -10,7 +10,7 @@ using std::vector;
 class RoomNode : public GraphObject {
 	int x, y, w, h; // bounds
 	vector<Door&> doors;
-	vector<TileCoord> tiles;   // tiles ??? ??????? ??? room
+	vector<TileCoord> tiles;   // tiles room
 public:
 
 	// Constructor
