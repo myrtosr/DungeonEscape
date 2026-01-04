@@ -15,7 +15,8 @@ void draw() {
 
 void resize(int w, int h) {
     GameState* game = reinterpret_cast<GameState*>(graphics::getUserData());
-    game->setWindowDimensions((unsigned int)w, (unsigned int)h);
+    game->onWindowResized((unsigned int)w, (unsigned int)h);
+    
 }
 
 int main() {

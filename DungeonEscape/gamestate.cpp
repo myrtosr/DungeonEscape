@@ -4,18 +4,8 @@
 
 void GameState::updateStartScreen()
 {
-	graphics::MouseState ms;
-	graphics::getMouseState(ms);
-
-	// Avoiding phantom clicks -> black padding = innactive space 
-	float cx = window2canvasX(ms.cur_pos_x);
-	float cy = window2canvasY(ms.cur_pos_y);
-	bool inside_canvas =
-		cx >= 0 && cx <= CANVAS_WIDTH &&
-		cy >= 0 && cy <= CANVAS_HEIGHT;
-
-	
-	if (ms.button_left_pressed && inside_canvas)
+	// Clicking anywhere on the screen take you to the playing state
+	if (mouse.button_left_pressed && inside_canvas)
 		status = STATUS_PLAYING;
 }
 
@@ -41,10 +31,6 @@ void GameState::drawStartScreen()
 	sprintf_s(info, "Enter the Dungeon");
 	graphics::drawText(CANVAS_WIDTH * 0.405, CANVAS_HEIGHT * 0.50, 30, info, br);
 
-	graphics::MouseState ms;
-	graphics::getMouseState(ms);
-	br.texture = std::string(ASSET_PATH) + "cursor.png";
-	graphics::drawRect(window2canvasX(ms.cur_pos_x), window2canvasY(ms.cur_pos_y), 50, 50, br);
 }
 
 void GameState::drawLevelScreen()
@@ -55,8 +41,21 @@ void GameState::drawEndScreen()
 {
 }
 
+void GameState::updateMouseCanvasCoords()
+{
+	cx = window2canvasX(mouse.cur_pos_x);
+	cy = window2canvasY(mouse.cur_pos_y);
+
+	inside_canvas =
+		cx >= 0 && cx <= CANVAS_WIDTH &&
+		cy >= 0 && cy <= CANVAS_HEIGHT;
+}
+
 void GameState::update()
 {
+	graphics::getMouseState(mouse);
+	updateMouseCanvasCoords();
+
 	if (status == STATUS_START) {
 		updateStartScreen();
 	}
@@ -70,6 +69,8 @@ void GameState::update()
 
 void GameState::draw()
 {
+	
+
 	if (status == STATUS_START) {
 		drawStartScreen();
 	}
@@ -79,6 +80,13 @@ void GameState::draw()
 	else if (status == STATUS_END) {
 		drawEndScreen();
 	}
+
+	graphics::Brush br;
+	br.outline_opacity = 0.0f;
+	graphics::getMouseState(mouse);
+	br.texture = std::string(ASSET_PATH) + "cursor.png";
+	if (inside_canvas)
+		graphics::drawRect(cx, cy, 50, 50, br);
 }
 
 void GameState::init()
@@ -108,6 +116,12 @@ float GameState::window2canvasY(float y)
 	float offset_y = (window_height - CANVAS_HEIGHT * scale) / 2.0f;
 
 	return (y - offset_y) / scale;
+}
+
+void GameState::onWindowResized(unsigned int w, unsigned int h)
+{
+	setWindowDimensions(w, h);
+	updateMouseCanvasCoords();
 }
 
 GameState::GameState()

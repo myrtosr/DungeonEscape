@@ -1,5 +1,6 @@
 #pragma once
 #include "config.h"
+#include "sgg/graphics.h"
 
 class GameState {
 	// game states -----------
@@ -15,6 +16,13 @@ class GameState {
 	void drawLevelScreen();
 	void drawEndScreen();
 	//------------------------
+	// Mouse handling
+	graphics::MouseState mouse; // keep this in check in the future - its uninitialized idk if that could cause problems, probs not
+	float cx = 0.0f;
+	float cy = 0.0f;
+	bool inside_canvas = false;
+	void updateMouseCanvasCoords();
+	//------------------------
 	unsigned int window_width = WINDOW_WIDTH;
 	unsigned int window_height = WINDOW_HEIGHT;
 public:
@@ -27,6 +35,7 @@ public:
 	float window2canvasX(float x);
 	float window2canvasY(float y);
 	void setWindowDimensions(unsigned int w, unsigned int h) { window_width = w; window_height = h; }
+	void onWindowResized(unsigned int w, unsigned int h);
 	// Constructor & Destructor 
 	GameState();
 	~GameState();
