@@ -35,6 +35,13 @@ void GameState::drawStartScreen()
 
 void GameState::drawLevelScreen()
 {
+	graphics::Brush br;
+	br.outline_opacity = 0.0f;
+	// division by 255.0f -> convert regular RGB values (0–255) to range for SGG (0.0–1) 
+	br.fill_color[0] = 26 / 255.0f;   // R
+	br.fill_color[1] = 3 / 255.0f;  // G
+	br.fill_color[2] = 46 / 255.0f;  // B
+	graphics::drawRect(CANVAS_WIDTH / 2, CANVAS_HEIGHT / 2, CANVAS_WIDTH, CANVAS_HEIGHT, br);
 }
 
 void GameState::drawEndScreen()
@@ -83,7 +90,6 @@ void GameState::draw()
 
 	graphics::Brush br;
 	br.outline_opacity = 0.0f;
-	graphics::getMouseState(mouse);
 	br.texture = std::string(ASSET_PATH) + "cursor.png";
 	if (inside_canvas)
 		graphics::drawRect(cx, cy, 50, 50, br);
