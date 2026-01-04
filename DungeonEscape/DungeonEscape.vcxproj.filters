@@ -13,12 +13,6 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
-    <Filter Include="Header Files\Dungeon">
-      <UniqueIdentifier>{709437c2-ec78-45a9-a1c8-a4230f25873b}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\Dungeon">
-      <UniqueIdentifier>{17f71064-2dfc-440e-ba6c-036c5008fcff}</UniqueIdentifier>
-    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -29,9 +23,6 @@
     </ClCompile>
     <ClCompile Include="gameobject.cpp">
       <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="door.cpp">
-      <Filter>Source Files\Dungeon</Filter>
     </ClCompile>
     <ClCompile Include="path\passage.cpp">
       <Filter>Source Files</Filter>
@@ -44,22 +35,19 @@
     <ClInclude Include="config.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="dungeongraph.h">
-      <Filter>Header Files\Dungeon</Filter>
-    </ClInclude>
-    <ClInclude Include="roomnode.h">
-      <Filter>Header Files\Dungeon</Filter>
-    </ClInclude>
     <ClInclude Include="gameobject.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="tilecoord.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="door.h">
-      <Filter>Header Files\Dungeon</Filter>
-    </ClInclude>
     <ClInclude Include="passage.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="roomnode.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="dungeongraph.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

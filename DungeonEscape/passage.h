@@ -17,8 +17,9 @@ public:
 
 	// Constructor
 	Passage(int id, int from, int to)
-		: id(id), roomFromId(from), roomToId(to) {};
-	
+		: id(id), roomFromId(from), roomToId(to) {
+	};
+
 	// getWeight method
 	int getWeight();
 

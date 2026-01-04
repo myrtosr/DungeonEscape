@@ -140,7 +140,6 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="door.cpp" />
     <ClCompile Include="gameobject.cpp" />
     <ClCompile Include="gamestate.cpp" />
     <ClCompile Include="main.cpp" />
@@ -148,7 +147,6 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="config.h" />
-    <ClInclude Include="door.h" />
     <ClInclude Include="dungeongraph.h" />
     <ClInclude Include="gameobject.h" />
     <ClInclude Include="gamestate.h" />
