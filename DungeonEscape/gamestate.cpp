@@ -76,7 +76,6 @@ void GameState::update()
 
 void GameState::draw()
 {
-	
 
 	if (status == STATUS_START) {
 		drawStartScreen();
