@@ -145,7 +145,9 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="config.h" />
+    <ClInclude Include="dungeongraph.h" />
     <ClInclude Include="gamestate.h" />
+    <ClInclude Include="graphobject.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

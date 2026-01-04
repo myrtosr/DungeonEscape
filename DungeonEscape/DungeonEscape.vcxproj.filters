@@ -13,6 +13,9 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Header Files\Dungeon">
+      <UniqueIdentifier>{709437c2-ec78-45a9-a1c8-a4230f25873b}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -28,6 +31,12 @@
     </ClInclude>
     <ClInclude Include="config.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="dungeongraph.h">
+      <Filter>Header Files\Dungeon</Filter>
+    </ClInclude>
+    <ClInclude Include="graphobject.h">
+      <Filter>Header Files\Dungeon</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
