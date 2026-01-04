@@ -38,5 +38,14 @@
     <ClInclude Include="graphobject.h">
       <Filter>Header Files\Dungeon</Filter>
     </ClInclude>
+    <ClInclude Include="roomnode.h">
+      <Filter>Header Files\Dungeon</Filter>
+    </ClInclude>
+    <ClInclude Include="paths.h">
+      <Filter>Header Files\Dungeon</Filter>
+    </ClInclude>
+    <ClInclude Include="doors.h">
+      <Filter>Header Files\Dungeon</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
