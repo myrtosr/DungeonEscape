@@ -9,7 +9,6 @@ class Passage {
 	int roomFromId;
 	int roomToId;
 
-
 	int weight = 1000;  // infinity will cause overflow???
 	bool accessible = false; //???
 
