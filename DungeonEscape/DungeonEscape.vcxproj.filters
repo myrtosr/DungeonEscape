@@ -24,7 +24,7 @@
     <ClCompile Include="gameobject.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="path\passage.cpp">
+    <ClCompile Include="passage.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
