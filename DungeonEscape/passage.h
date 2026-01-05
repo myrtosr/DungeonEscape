@@ -23,7 +23,7 @@ public:
 	int getWeight() { return weight; }
 
 	// setWeight
-	int setWeight(int w) { weight = w; }
+	void setWeight(int w) { weight = w; }
 
 	// unlock
 	void unlock() { accessible = true; }
