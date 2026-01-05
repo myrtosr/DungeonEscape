@@ -1,6 +1,7 @@
 #pragma once
 #include "config.h"
 #include "sgg/graphics.h"
+#include "dungeongraph.h"
 
 class GameState {
 	// game states -----------
@@ -36,6 +37,10 @@ public:
 	float window2canvasY(float y);
 	void setWindowDimensions(unsigned int w, unsigned int h) { window_width = w; window_height = h; }
 	void onWindowResized(unsigned int w, unsigned int h);
+
+	// DungeonGraph initialization
+	DungeonGraph mygraph;
+
 	// Constructor & Destructor 
 	GameState();
 	~GameState();

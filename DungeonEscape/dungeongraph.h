@@ -14,5 +14,7 @@ public:
 
 	//pathfind method
 	//updateWeight() 
+
+	void initializeGraphStructure();
 	
 };

@@ -2,6 +2,27 @@
 #include "gamestate.h"
 #include "config.h"
 
+
+// Dungeon initialization
+void GameState::init() {
+
+	mygraph.initializeGraphStructure();
+}
+void DungeonGraph::addRoom(RoomNode* room)
+{
+	if (!room) return;
+	rooms.push_back(room);
+	// roomById[room->getId()] = room;
+}
+
+void DungeonGraph::addPassage(Passage* passage)
+{
+	if (!passage) return;
+	passages.push_back(passage);
+}
+
+
+
 void GameState::updateStartScreen()
 {
 	// Clicking anywhere on the screen take you to the playing state
