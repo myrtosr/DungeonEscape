@@ -7,13 +7,10 @@ void drawGrid()
 	graphics::Brush br;
 
 	// Fill color (σκούρο για background tile)
-	br.fill_color[0] = 0.15f;
-	br.fill_color[1] = 0.15f;
-	br.fill_color[2] = 0.18f;
-	br.fill_opacity = 1.0f;
+	br.fill_opacity = 0.0f;
 
 	// Outline (grid lines)
-	br.outline_color[0] = 0.3f;
+	br.outline_color[0] = 0.0f;
 	br.outline_color[1] = 0.3f;
 	br.outline_color[2] = 0.3f;
 	br.outline_opacity = 1.0f;
