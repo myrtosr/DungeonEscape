@@ -5,13 +5,18 @@
 #include <vector>;
 
 
-void DungeonGraph:: addRoom(RoomNode* const room) {
-		rooms.push_back(room);
-};
-	
-void DungeonGraph:: addPassage(Passage* const passage) {
-		passages.push_back(passage);
-};
+void DungeonGraph::addRoom(RoomNode* room)
+{
+    if (!room) return;
+    rooms.push_back(room);
+    // roomById[room->getId()] = room;
+}
+
+void DungeonGraph::addPassage(Passage* passage)
+{
+    if (!passage) return;
+    passages.push_back(passage);
+}
 
 
 void DungeonGraph::initializeGraphStructure() {
