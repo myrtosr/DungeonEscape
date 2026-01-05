@@ -3,8 +3,10 @@
 #include "sgg/graphics.h"
 
 // Constructor of TileMap
-TileMap::TileMap()
-{
+TileMap::TileMap() //TileMap(tileX, tileY)
+{   
+
+    // Move to config.h
     // (m, n) -> tilesX=m, tilesY=n
     tilesX = CANVAS_WIDTH / TILE_SIZE;
     tilesY = CANVAS_HEIGHT / TILE_SIZE;

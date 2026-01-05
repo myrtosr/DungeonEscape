@@ -28,4 +28,10 @@ public:
 
 	int getX() { return x; };
 	int getY() { return y; };
+
+	TileType getType() const { return type; }
+	void setType(TileType t) { type = t; }
+
+	bool isClickable() const { return clickable; }
+	void setClickable(bool c) { clickable = c; }
 };
