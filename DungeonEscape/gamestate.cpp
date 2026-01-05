@@ -2,38 +2,6 @@
 #include "gamestate.h"
 #include "config.h"
 
-void drawGrid()
-{
-	graphics::Brush br;
-
-	// Fill color (σκούρο για background tile)
-	br.fill_opacity = 0.0f;
-
-	// Outline (grid lines)
-	br.outline_color[0] = 0.0f;
-	br.outline_color[1] = 0.3f;
-	br.outline_color[2] = 0.3f;
-	br.outline_opacity = 1.0f;
-	br.outline_width = 1.0f;
-
-	for (int row = 0; row < GRID_ROWS; ++row)
-	{
-		for (int col = 0; col < GRID_COLS; ++col)
-		{
-			float x = col * TILE_SIZE + TILE_SIZE / 2.0f;
-			float y = row * TILE_SIZE + TILE_SIZE / 2.0f;
-
-			graphics::drawRect(
-				x,
-				y,
-				TILE_SIZE,
-				TILE_SIZE,
-				br
-			);
-		}
-	}
-}
-
 void GameState::updateStartScreen()
 {
 	// Clicking anywhere on the screen take you to the playing state
