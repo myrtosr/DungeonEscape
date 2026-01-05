@@ -20,13 +20,13 @@ TileMap::TileMap()
 
 // Row major order to access tiles
 Tile& TileMap::at(int x, int y) {
-    return tiles[y * CANVAS_WIDTH + x];
+    return tiles[y * tilesX + x];
 }
 
 // const override 
-const Tile& TileMap::at(int x, int y) const {
-    return tiles[y * CANVAS_WIDTH + x];
-}
+//const Tile& TileMap::at(int x, int y) const {
+//    return tiles[y * tilesX + x];
+//}
 
 // pixel -> tile
 bool TileMap::pixelToTile(int px, int py, int& tx, int& ty) const {
