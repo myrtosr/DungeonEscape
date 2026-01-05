@@ -9,9 +9,6 @@ void GameState::init() {
 	mygraph.initializeGraphStructure();
 }
 
-
-
-
 void GameState::updateStartScreen()
 {
 	// Clicking anywhere on the screen take you to the playing state
@@ -52,8 +49,6 @@ void GameState::drawLevelScreen()
 	br.fill_color[1] = 3 / 255.0f;  // G
 	br.fill_color[2] = 46 / 255.0f;  // B
 	graphics::drawRect(CANVAS_WIDTH / 2, CANVAS_HEIGHT / 2, CANVAS_WIDTH, CANVAS_HEIGHT, br);
-
-	drawGrid();
 }
 
 void GameState::drawEndScreen()
@@ -110,7 +105,6 @@ void GameState::init()
 {
 }
 
-// check implementation
 float GameState::window2canvasX(float x)
 {
 	float scale = std::min(
@@ -122,7 +116,7 @@ float GameState::window2canvasX(float x)
 
 	return (x - offset_x) / scale;
 }
-// check implementation
+
 float GameState::window2canvasY(float y)
 {
 	float scale = std::min(
@@ -139,6 +133,14 @@ void GameState::onWindowResized(unsigned int w, unsigned int h)
 {
 	setWindowDimensions(w, h);
 	updateMouseCanvasCoords();
+}
+
+bool GameState::canvas2tile(int px, int py, int& tx, int& ty) const {
+	tx = px / TILE_SIZE;
+	ty = py / TILE_SIZE;
+
+	return tx >= 0 && tx < TILES_X &&
+		ty >= 0 && ty < TILES_Y;
 }
 
 GameState::GameState()

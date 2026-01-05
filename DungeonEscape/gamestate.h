@@ -37,7 +37,7 @@ public:
 	float window2canvasY(float y);
 	void setWindowDimensions(unsigned int w, unsigned int h) { window_width = w; window_height = h; }
 	void onWindowResized(unsigned int w, unsigned int h);
-
+	bool canvas2tile(int px, int py, int& tx, int& ty) const {};
 	// DungeonGraph initialization
 	DungeonGraph mygraph;
 
