@@ -29,7 +29,9 @@ Tile& TileMap::at(int x, int y) {
 //}
 
 // pixel -> tile
-bool TileMap::pixelToTile(int px, int py, int& tx, int& ty) const {
+// πρόταση: αυτή η συνάρτηση να είναι στη Game state. Χειρίζεται mouse inputs -> αυτό είναι δουλειά της Game
+// Ίσως το TileMap δεν πρέπει να ξέρει καθόλου canvas coordinates... δουλεύει με τις δικές του μονάδες. 
+bool TileMap::pixelToTile(int px, int py, int& tx, int& ty) const {  
     tx = px / TILE_SIZE;
     ty = py / TILE_SIZE;
 
