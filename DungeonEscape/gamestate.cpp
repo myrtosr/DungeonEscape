@@ -2,18 +2,44 @@
 #include "gamestate.h"
 #include "config.h"
 
-
-// Dungeon initialization
 void GameState::init() {
+	// Button Initialization
+	// Start Screen Buttons
+	startButtons.push_back({
+		CANVAS_WIDTH / 2 ,         
+		CANVAS_HEIGHT / 2 + 180,
+		170,                      
+		60,                      
+		"start.png"
+		});
 
+	startButtons.push_back({
+		CANVAS_WIDTH / 2,
+		CANVAS_HEIGHT / 2 + 270,
+		170,
+		60,
+		"exit.png"
+		});
+
+	// I want to add an "about button" but how do I make a pop-up on a currnet game state? And do I have to make another button to close it? :(
+	// Dungeon initialization
 	mygraph.initializeGraphStructure();
 }
 
 void GameState::updateStartScreen()
 {
-	// Clicking anywhere on the screen take you to the playing state
-	if (mouse.button_left_pressed && inside_canvas)
-		status = STATUS_PLAYING;
+	for (auto& b : startButtons) {
+		b.updateHover(cx, cy);
+
+		if (b.isClicked(mouse.button_left_pressed)) {
+			if (b.getTexture() == "start.png") {
+				status = STATUS_PLAYING;
+			}
+			else if (b.getTexture() == "exit.png") {
+				status = STATUS_END;
+			}
+		}
+	}
 }
 
 void GameState::updateLevelScreen()
@@ -29,14 +55,19 @@ void GameState::drawStartScreen()
 	graphics::setFont(std::string(ASSET_PATH) + "title_font.ttf");
 
 	graphics::Brush br;
-	br.texture = std::string(ASSET_PATH) + "background.png";
+	br.texture = std::string(ASSET_PATH) + "background2.png";
 	br.outline_opacity = 0.0f;
 	graphics::drawRect(CANVAS_WIDTH / 2, CANVAS_HEIGHT / 2, CANVAS_WIDTH, CANVAS_HEIGHT, br);
-
+	
 	br.texture = "";
 	char info[40];
-	sprintf_s(info, "Enter the Dungeon");
-	graphics::drawText(CANVAS_WIDTH * 0.405, CANVAS_HEIGHT * 0.50, 30, info, br);
+	sprintf_s(info, "Dungeon Escape");
+	graphics::drawText(CANVAS_WIDTH/2 - 280, CANVAS_HEIGHT/2 + 50 , 80, info, br);
+
+	// Drawing the buttons
+	for (auto& b : startButtons) {
+		b.draw(); 
+	}
 
 }
 
@@ -101,10 +132,6 @@ void GameState::draw()
 		graphics::drawRect(cx, cy, 50, 50, br);
 }
 
-void GameState::init()
-{
-}
-
 float GameState::window2canvasX(float x)
 {
 	float scale = std::min(
@@ -135,7 +162,7 @@ void GameState::onWindowResized(unsigned int w, unsigned int h)
 	updateMouseCanvasCoords();
 }
 
-bool GameState::canvas2tile(int px, int py, int& tx, int& ty) const {
+bool GameState::canvas2tile(int px, int py, int& tx, int& ty) {
 	tx = px / TILE_SIZE;
 	ty = py / TILE_SIZE;
 

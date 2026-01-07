@@ -1,16 +1,24 @@
 #pragma once
-#include "tilemap.h"
+#include "util.h"
 #include "roomnode.h"
 
 class RoomView {
-	RoomNode* node; // pointer to corresponding room node
+	RoomNode* roomNode; // pointer to corresponding room node 
+	// Conenction to roomnode could also be achieved with roomID since it's a unique property?
 
-	int x, y;  // top-left tile
-	int w, h;  // bottom-right tile
+	TileCoord topLeft; // the first tile of a room
+	TileCoord bottomRight;  // the last tile of a room
 	// The bounds of the room get calculated based on those
 
 public:
-	RoomView(RoomNode* node, int x, int y, int w, int h);
+	RoomView(RoomNode* node, TileCoord tl, TileCoord br)
+		: roomNode(node), topLeft(tl), bottomRight(br) {
+	}
 
-	void applyToTileMap(TileMap& map); // we'll see about this
+	// Getters
+	RoomNode* getRoomNode() const { return roomNode; }
+	TileCoord getTopLeft() const { return topLeft; }
+	TileCoord getBottomRight() const { return bottomRight; }
+
+	// void applyToTileMap(TileMap& map); // we'll see about this
 };

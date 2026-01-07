@@ -1,9 +1,8 @@
 #include "roomview.h"
 
-RoomView::RoomView(RoomNode* node, int x, int y, int w, int h)
-	: node(node), x(x), y(y), w(w), h(h) {
-}
 
+
+/*
 void RoomView::applyToTileMap(TileMap& map) {
 	for (int ty = y; ty < y + h; ++ty) {
 		for (int tx = x; tx < x + w; ++tx) {
@@ -44,6 +43,7 @@ void RoomView::applyToTileMap(TileMap& map) {
 			}
 		}
 	};
+*/
 
 
 	// if ((isTop || isBottom) && (isLeft || isRight)) {

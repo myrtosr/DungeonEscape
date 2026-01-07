@@ -4,6 +4,6 @@
 #include "roomview.h"
 // #include "passageview.h"
 
-class DungeonMap : GameObject {
+class DungeonMap : GameObject { 
 	
 };
