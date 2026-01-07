@@ -15,25 +15,25 @@ void RoomView::applyToTileMap(TileMap& map) {
 
 			// ΓΩΝΙΕΣ
 			if (isTop && isLeft) {
-				tile.getType() = TileType::WALL_TL;
+				tile.setType(TileType::WALL_TL);
 			}
 			else if (isTop && isRight) {
-				tile.getType() = TileType::WALL_TR;
+				tile.setType(TileType::WALL_TR);
 			}
 			else if (isBottom && isLeft) {
-				tile.getType() = TileType::WALL_BL;
+				tile.setType(TileType::WALL_BL);
 			}
 			else if (isBottom && isRight) {
-				tile.getType() = TileType::WALL_BR;
+				tile.setType(TileType::WALL_BR);
 			}
 
 			// ΟΡΙΖΟΝΤΙΟΙ ΤΟΙΧΟΙ
 			else if (isTop || isBottom) {
-				tile.getType() = TileType::WALL_HOR;
+				tile.setType(TileType::WALL_HOR);
 			}
 			// ΚΑΘΕΤΟΙ ΤΟΙΧΟΙ
 			else if (isLeft || isRight) {
-				tile.type = TileType::WALL_VER;
+				tile.setType(TileType::WALL_VER);
 			}
 			// ΕΣΩΤΕΡΙΚΟ ΔΩΜΑΤΙΟΥ
 			else {
