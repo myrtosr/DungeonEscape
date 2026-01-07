@@ -1,36 +1,35 @@
 #include "roomview.h"
+#include "tile.h"
 
 
-
-/*
 void RoomView::applyToTileMap(TileMap& map) {
-	for (int ty = y; ty < y + h; ++ty) {
-		for (int tx = x; tx < x + w; ++tx) {
+	for (int ty = topLeft.y; ty < topLeft.y + bottomRight.y; ++ty) {
+		for (int tx = topLeft.x; tx < topLeft.x + bottomRight.x; ++tx) {
 
 			Tile& tile = map.at(tx, ty);
 
-			bool isTop = (ty == y);
-			bool isBottom = (ty == y + h - 1);
-			bool isLeft = (tx == x);
-			bool isRight = (tx == x + w - 1);
+			bool isTop = (ty == topLeft.y);
+			bool isBottom = (ty == topLeft.y + bottomRight.y - 1);
+			bool isLeft = (tx == topLeft.x);
+			bool isRight = (tx == topLeft.x + bottomRight.x - 1);
 
 			// ΓΩΝΙΕΣ
 			if (isTop && isLeft) {
-				tile.type = TileType::WALL_TL;
+				tile.getType() = TileType::WALL_TL;
 			}
 			else if (isTop && isRight) {
-				tile.type = TileType::WALL_TR;
+				tile.getType() = TileType::WALL_TR;
 			}
 			else if (isBottom && isLeft) {
-				tile.type = TileType::WALL_BL;
+				tile.getType() = TileType::WALL_BL;
 			}
 			else if (isBottom && isRight) {
-				tile.type == TileType::WALL_BR;
+				tile.getType() == TileType::WALL_BR;
 			}
 
 			// ΟΡΙΖΟΝΤΙΟΙ ΤΟΙΧΟΙ
 			else if (isTop || isBottom) {
-				tile.type = TileType::WALL_HOR;
+				tile.getType() = TileType::WALL_HOR;
 			}
 			// ΚΑΘΕΤΟΙ ΤΟΙΧΟΙ
 			else if (isLeft || isRight) {
@@ -42,10 +41,6 @@ void RoomView::applyToTileMap(TileMap& map) {
 				tile.clickable = node->isAvailable();
 			}
 		}
+
+		// 1, 2, 3
 	};
-*/
-
-
-	// if ((isTop || isBottom) && (isLeft || isRight)) {
-//    tile.type = TileType::WallCorner;
-//}

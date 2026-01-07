@@ -1,6 +1,7 @@
 #pragma once
 #include "util.h"
 #include "passage.h"
+#include "tilemap.h"
 
 class PassageView {
 	Passage* passage; // pointer to corresponding passage-edge 
@@ -18,4 +19,6 @@ public:
 	Passage* getPassage() const { return passage; }
 	TileCoord getFirstTile() const { return first; }
 	TileCoord getLastTile() const { return last; }
+
+	void applyToTileMap(TileMap& map);
 };

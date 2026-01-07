@@ -145,6 +145,7 @@
     <ClCompile Include="gameobject.cpp" />
     <ClCompile Include="gamestate.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="passageview.cpp" />
     <ClCompile Include="roomview.cpp" />
     <ClCompile Include="tilemap.cpp" />
   </ItemGroup>

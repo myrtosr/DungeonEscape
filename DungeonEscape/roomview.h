@@ -1,6 +1,7 @@
 #pragma once
 #include "util.h"
 #include "roomnode.h"
+#include "tilemap.h"
 
 class RoomView {
 	RoomNode* roomNode; // pointer to corresponding room node 
@@ -20,5 +21,5 @@ public:
 	TileCoord getTopLeft() const { return topLeft; }
 	TileCoord getBottomRight() const { return bottomRight; }
 
-	// void applyToTileMap(TileMap& map); // we'll see about this
+	void applyToTileMap(TileMap& map); // we'll see about this
 };
