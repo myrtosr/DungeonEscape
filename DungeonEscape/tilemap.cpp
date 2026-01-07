@@ -20,6 +20,32 @@ Tile& TileMap::at(int x, int y) {
     return tiles[y * TILES_X + x];
 }
 
+void TileMap::drawGridDebug()
+{
+    graphics::Brush brush;
+    brush.fill_opacity = 0.0f;
+    brush.outline_opacity = 1.0f;
+    brush.outline_width = 1.0f;
+    brush.outline_color[0] = 0.3f;
+    brush.outline_color[1] = 0.0f;
+    brush.outline_color[2] = 0.3f;
+
+    for (Tile& tile : tiles)
+    {
+        float world_x = tile.getX() * TILE_SIZE + TILE_SIZE * 0.5f;
+        float world_y = tile.getY() * TILE_SIZE + TILE_SIZE * 0.5f;
+
+        graphics::drawRect(
+            world_x,
+            world_y,
+            TILE_SIZE,
+            TILE_SIZE,
+            brush
+        );
+    }
+}
+
+
 
 
 

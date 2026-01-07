@@ -1,5 +1,6 @@
 #include "sgg/graphics.h"
 #include "gamestate.h"
+#include "tilemap.h"
 #include "config.h"
 
 void GameState::init() {
@@ -80,6 +81,11 @@ void GameState::drawLevelScreen()
 	br.fill_color[1] = 3 / 255.0f;  // G
 	br.fill_color[2] = 46 / 255.0f;  // B
 	graphics::drawRect(CANVAS_WIDTH / 2, CANVAS_HEIGHT / 2, CANVAS_WIDTH, CANVAS_HEIGHT, br);
+
+	if (debug) {
+		TileMap tilemap;
+		tilemap.drawGridDebug();
+	}
 }
 
 void GameState::drawEndScreen()

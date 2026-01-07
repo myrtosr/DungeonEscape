@@ -41,4 +41,5 @@ void RoomView::applyToTileMap(TileMap& map) {
 				tile.setClickable(roomNode->isAvailable());
 			}
 		}
-	};
+	}
+}

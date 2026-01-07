@@ -33,6 +33,7 @@ class GameState {
 	// Button Initialization
 	std::vector<Button> startButtons; // All buttons for the start menu
 	// we can add more buttons for other states of the game if we want :)
+	bool debug = false;
 public:
 	void update();
 	void draw();
@@ -45,7 +46,8 @@ public:
 	void setWindowDimensions(unsigned int w, unsigned int h) { window_width = w; window_height = h; }
 	void onWindowResized(unsigned int w, unsigned int h);
 	bool canvas2tile(int px, int py, int& tx, int& ty);
-	
+	void setDebugMode(bool d) { debug = d; }
+	bool getDebugMode() const { return debug; }
 
 	// Constructor & Destructor 
 	GameState();

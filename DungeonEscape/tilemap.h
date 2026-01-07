@@ -17,5 +17,5 @@ public:
 	bool pixelToTile(int px, int py, int& tx, int& ty) const {};
 	void draw() const;
 
-
+	void drawGridDebug();
 };
