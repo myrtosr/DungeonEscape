@@ -1,6 +1,6 @@
 #pragma once
 
+// Tile Coordinates
 struct TileCoord {
-	int x;
-	int y;
+	int x, y;
 };

@@ -9,8 +9,8 @@ class DungeonGraph {
 	std::vector<Passage*> passages;
 
 public:
-	void addRoom(RoomNode* const room);
-	void addPassage(Passage* const passage);
+	void addRoom(RoomNode* room);
+	void addPassage(Passage* passage);
 
 	//pathfind method
 	//updateWeight() 

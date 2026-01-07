@@ -1,18 +1,20 @@
 #pragma once
 #include "config.h"
+#include <vector>
 #include "sgg/graphics.h"
+#include "button.h"
 #include "dungeongraph.h"
 
 class GameState {
-	// game states -----------
+	// Game states -----------
 	typedef enum { STATUS_START, STATUS_PLAYING, STATUS_END } status_t;
 	status_t status = STATUS_START;
 	//------------------------
-	// update functions for different states of the game
+	// Update functions for different states of the game
 	void updateStartScreen();
 	void updateLevelScreen();
 	void updateEndScreen();
-	// draw functions for different states of the game
+	// Draw functions for different states of the game
 	void drawStartScreen();
 	void drawLevelScreen();
 	void drawEndScreen();
@@ -26,6 +28,11 @@ class GameState {
 	//------------------------
 	unsigned int window_width = WINDOW_WIDTH;
 	unsigned int window_height = WINDOW_HEIGHT;
+	// DungeonGraph initialization
+	DungeonGraph mygraph;
+	// Button Initialization
+	std::vector<Button> startButtons; // All buttons for the start menu
+	// we can add more buttons for other states of the game if we want :)
 public:
 	void update();
 	void draw();
@@ -37,9 +44,8 @@ public:
 	float window2canvasY(float y);
 	void setWindowDimensions(unsigned int w, unsigned int h) { window_width = w; window_height = h; }
 	void onWindowResized(unsigned int w, unsigned int h);
-
-	// DungeonGraph initialization
-	DungeonGraph mygraph;
+	bool canvas2tile(int px, int py, int& tx, int& ty);
+	
 
 	// Constructor & Destructor 
 	GameState();
