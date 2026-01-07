@@ -24,7 +24,7 @@ void RoomView::applyToTileMap(TileMap& map) {
 				tile.getType() = TileType::WALL_BL;
 			}
 			else if (isBottom && isRight) {
-				tile.getType() == TileType::WALL_BR;
+				tile.getType() = TileType::WALL_BR;
 			}
 
 			// ΟΡΙΖΟΝΤΙΟΙ ΤΟΙΧΟΙ
