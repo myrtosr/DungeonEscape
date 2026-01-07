@@ -3,19 +3,25 @@
 #include "passage.h"
 #include "dungeongraph.h"
 #include <vector>;
+#include <unordered_map>
 
 
 void DungeonGraph::addRoom(RoomNode* room)
 {
     if (!room) return;
     rooms.push_back(room);
-    // roomById[room->getId()] = room;
+
+    // adding to the hash map
+    roomsById[room->getId()] = room;
 }
 
 void DungeonGraph::addPassage(Passage* passage)
 {
     if (!passage) return;
     passages.push_back(passage);
+
+    // adding to the hash map
+    passagesById[passage->getId()] = passage; //??
 }
 
 
@@ -39,6 +45,11 @@ void DungeonGraph::initializeGraphStructure() {
 
     // Passage weights will be set later based on corridor length in tiles 
     // (computed from the GridMap?)
+}
+
+RoomNode* DungeonGraph::getRoomById(int id)
+{
+    return roomsById[id];
 }
 
 

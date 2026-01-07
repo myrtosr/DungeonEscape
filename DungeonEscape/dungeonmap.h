@@ -24,7 +24,7 @@ public:
 
 	//runtime
 	void update();
-	void draw() const;
+	void draw();
 
 	TileMap& getTileMap();
 

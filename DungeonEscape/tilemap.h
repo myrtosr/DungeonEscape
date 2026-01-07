@@ -12,10 +12,9 @@ public:
 	TileMap();
 
 	Tile& at(int x, int y);
-	const Tile& at(int x, int y) const;
 
 	bool pixelToTile(int px, int py, int& tx, int& ty) const {};
-	void draw() const;
+	void draw();
 
 	void drawGridDebug();
 };

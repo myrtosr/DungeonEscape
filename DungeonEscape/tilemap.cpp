@@ -20,6 +20,62 @@ Tile& TileMap::at(int x, int y) {
     return tiles[y * TILES_X + x];
 }
 
+void TileMap::draw()
+{
+    for ( Tile& t : tiles) {
+        
+        // MAKE pixel2Canvas function
+        float px = t.getX() * TILE_SIZE;
+        float py = t.getY() * TILE_SIZE;
+
+        graphics::Brush br;
+
+        switch (t.getType()) 
+        {
+
+        case TileType::FLOOR:
+            br.fill_color[0] = 106/255.0f;
+            br.fill_color[1] = 163/255.0f;
+            br.fill_color[2] = 236/255.0f;
+            break;
+
+        case TileType::WALL_HOR:
+        case TileType::WALL_VER:
+        case TileType::WALL_TL:
+        case TileType::WALL_TR:
+        case TileType::WALL_BL:
+        case TileType::WALL_BR:
+            br.fill_color[0] = 247/ 255.0f;
+            br.fill_color[1] = 229/ 255.0f;
+            br.fill_color[2] = 134/ 255.0f;
+            break;
+        
+        /*
+        case TileType::DOOR:
+            br.fill_color[0] = 0.8f;
+            br.fill_color[1] = 0.5f;
+            br.fill_color[2] = 0.2f;
+            break;
+
+        case TileType::PASSAGE:
+            br.fill_color[0] = 0.4f;
+            br.fill_color[1] = 0.4f;
+            br.fill_color[2] = 0.4f;
+            break;
+        */
+
+        case TileType::EMPTY:
+            br.fill_opacity = 0.0f;
+            break;
+        }
+
+        graphics::drawRect(px, py, TILE_SIZE, TILE_SIZE, br);
+
+        }
+
+}
+
+
 void TileMap::drawGridDebug()
 {
     graphics::Brush brush;

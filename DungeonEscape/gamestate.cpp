@@ -81,6 +81,10 @@ void GameState::drawLevelScreen()
 	br.fill_color[1] = 3 / 255.0f;  // G
 	br.fill_color[2] = 46 / 255.0f;  // B
 	graphics::drawRect(CANVAS_WIDTH / 2, CANVAS_HEIGHT / 2, CANVAS_WIDTH, CANVAS_HEIGHT, br);
+	
+	DungeonMap my_map(&mygraph);
+	my_map.draw();
+
 
 	if (debug) {
 		TileMap tilemap;

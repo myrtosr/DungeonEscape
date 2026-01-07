@@ -4,6 +4,7 @@
 #include "sgg/graphics.h"
 #include "button.h"
 #include "dungeongraph.h"
+#include "dungeonmap.h"
 
 class GameState {
 	// Game states -----------
@@ -30,6 +31,8 @@ class GameState {
 	unsigned int window_height = WINDOW_HEIGHT;
 	// DungeonGraph initialization
 	DungeonGraph mygraph;
+	// DungeonMap initialization
+	DungeonMap my_map;
 	// Button Initialization
 	std::vector<Button> startButtons; // All buttons for the start menu
 	// we can add more buttons for other states of the game if we want :)
