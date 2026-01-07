@@ -13,7 +13,7 @@ void RoomView::applyToTileMap(TileMap& map) {
 			bool isLeft = (tx == topLeft.x);
 			bool isRight = (tx == topLeft.x + bottomRight.x - 1);
 
-			// ΓΩΝΙΕΣ
+			// WALL CORNERS
 			if (isTop && isLeft) {
 				tile.setType(TileType::WALL_TL);
 			}
@@ -27,20 +27,18 @@ void RoomView::applyToTileMap(TileMap& map) {
 				tile.setType(TileType::WALL_BR);
 			}
 
-			// ΟΡΙΖΟΝΤΙΟΙ ΤΟΙΧΟΙ
+			// HORIZONTAL WALLS
 			else if (isTop || isBottom) {
 				tile.setType(TileType::WALL_HOR);
 			}
-			// ΚΑΘΕΤΟΙ ΤΟΙΧΟΙ
+			// VERTICAL WALLS
 			else if (isLeft || isRight) {
 				tile.setType(TileType::WALL_VER);
 			}
-			// ΕΣΩΤΕΡΙΚΟ ΔΩΜΑΤΙΟΥ
+			// ROOM FLOOR
 			else {
-				tile.type = TileType::FLOOR;
-				tile.clickable = node->isAvailable();
+				tile.setType(TileType::FLOOR);
+				tile.setClickable(roomNode->isAvailable());
 			}
 		}
-
-		// 1, 2, 3
 	};
