@@ -15,7 +15,7 @@ TileMap::TileMap() //TileMap(tileX, tileY)
     tiles.reserve(tilesX * tilesY);
 
     // saving coordinates of grid_map in vector
-    for (int y = 0; y < tilesY; ++y)
+    for (int y = 0; y < tilesY; ++y)    
         for (int x = 0; x < tilesX; ++x)
             tiles.emplace_back(x, y);
 }
