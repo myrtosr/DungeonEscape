@@ -21,5 +21,5 @@ public:
 	TileCoord getTopLeft() const { return topLeft; }
 	TileCoord getBottomRight() const { return bottomRight; }
 
-	void applyToTileMap(TileMap& map); // we'll see about this
+	void applyToTileMap(TileMap& map); 
 };

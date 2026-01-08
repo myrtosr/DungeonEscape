@@ -8,6 +8,6 @@
 #define CANVAS_HEIGHT 960
 // Defining the grid map size
 #define TILE_SIZE 48
-#define TILES_X (CANVAS_WIDTH / TILE_SIZE)
-#define TILES_Y (CANVAS_HEIGHT / TILE_SIZE)
+#define GRID_WIDTH (CANVAS_WIDTH / TILE_SIZE)
+#define GRID_HEIGHT (CANVAS_HEIGHT / TILE_SIZE)
 

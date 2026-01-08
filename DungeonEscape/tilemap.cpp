@@ -7,33 +7,47 @@ TileMap::TileMap()
 {   
 
     // Reserving space for vector
-    tiles.reserve(TILES_X * TILES_Y);
+    tiles.reserve(GRID_WIDTH * GRID_HEIGHT);
 
     // Saving coordinates of grid_map in vector
-    for (int y = 0; y < TILES_Y; ++y)
-        for (int x = 0; x < TILES_X; ++x)
-            tiles.emplace_back(x, y);
+    for (int row = 0; row < GRID_HEIGHT; ++row)
+        for (int col = 0; col < GRID_WIDTH; ++col)
+            tiles.emplace_back(row, col);
 }
 
-// Row major order to access tiles
-Tile& TileMap::at(int x, int y) {
-    return tiles[y * TILES_X + x];
+// Accessing tiles in row major order
+Tile& TileMap::at(int row, int col) {
+    return tiles[row * GRID_WIDTH + col ];
+}
+
+void TileMap::tileToCanvas(int row, int col, float& cx, float& cy) const
+{
+    cx = col * TILE_SIZE + TILE_SIZE * 0.5f;
+    cy = row * TILE_SIZE + TILE_SIZE * 0.5f;
+}
+
+void TileMap::canvasToTile(float cx, float cy, int& row, int& col) const
+{
+    row = int(cy / TILE_SIZE);
+    col = int(cx / TILE_SIZE);
 }
 
 void TileMap::draw()
 {
+
     for ( Tile& t : tiles) {
         
-        // MAKE pixel2Canvas function
-        float px = t.getX() * TILE_SIZE;
-        float py = t.getY() * TILE_SIZE;
+        float cx, cy;
+        tileToCanvas(t.getX(), t.getY(), cx, cy);
 
         graphics::Brush br;
+        br.outline_opacity = 0.0f;
 
         switch (t.getType()) 
         {
 
         case TileType::FLOOR:
+            
             br.fill_color[0] = 106/255.0f;
             br.fill_color[1] = 163/255.0f;
             br.fill_color[2] = 236/255.0f;
@@ -56,20 +70,29 @@ void TileMap::draw()
             br.fill_color[1] = 0.5f;
             br.fill_color[2] = 0.2f;
             break;
-
-        case TileType::PASSAGE:
-            br.fill_color[0] = 0.4f;
-            br.fill_color[1] = 0.4f;
-            br.fill_color[2] = 0.4f;
-            break;
         */
 
+        case TileType::PASSAGE:
+            br.fill_color[0] = 0.0f;
+            br.fill_color[1] = 0.4f;
+            br.fill_color[2] = 0.0f;
+            break;
+        
+
         case TileType::EMPTY:
-            br.fill_opacity = 0.0f;
+            br.fill_color[0] = 26 / 255.0f;  
+            br.fill_color[1] = 3 / 255.0f;  
+            br.fill_color[2] = 46 / 255.0f;  
             break;
         }
 
-        graphics::drawRect(px, py, TILE_SIZE, TILE_SIZE, br);
+        if (isHovered(t.getX(), t.getY())) {
+            br.fill_color[0] = 0.3f;
+            br.fill_color[1] = 0.0f;
+            br.fill_color[2] = 0.3f;
+        }
+
+        graphics::drawRect(cx, cy, TILE_SIZE, TILE_SIZE, br);
 
         }
 
@@ -88,12 +111,12 @@ void TileMap::drawGridDebug()
 
     for (Tile& tile : tiles)
     {
-        float world_x = tile.getX() * TILE_SIZE + TILE_SIZE * 0.5f;
-        float world_y = tile.getY() * TILE_SIZE + TILE_SIZE * 0.5f;
+        float cx, cy;
+        tileToCanvas(tile.getX(), tile.getY(), cx, cy);
 
         graphics::drawRect(
-            world_x,
-            world_y,
+            cx,
+            cy,
             TILE_SIZE,
             TILE_SIZE,
             brush

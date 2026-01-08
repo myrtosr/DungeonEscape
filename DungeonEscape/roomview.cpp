@@ -3,15 +3,15 @@
 
 
 void RoomView::applyToTileMap(TileMap& map) {
-	for (int ty = topLeft.y; ty < topLeft.y + bottomRight.y; ++ty) {
-		for (int tx = topLeft.x; tx < topLeft.x + bottomRight.x; ++tx) {
+	for (int row = topLeft.x; row <= bottomRight.x; ++row) {
+		for (int col = topLeft.y; col <= bottomRight.y; ++col) {
 
-			Tile& tile = map.at(tx, ty);
+			Tile& tile = map.at(row, col);
 
-			bool isTop = (ty == topLeft.y);
-			bool isBottom = (ty == topLeft.y + bottomRight.y - 1);
-			bool isLeft = (tx == topLeft.x);
-			bool isRight = (tx == topLeft.x + bottomRight.x - 1);
+			bool isTop = (row == topLeft.x);
+			bool isBottom = (row == bottomRight.x);
+			bool isLeft = (col == topLeft.y);
+			bool isRight = (col == bottomRight.y);
 
 			// WALL CORNERS
 			if (isTop && isLeft) {

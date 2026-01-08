@@ -23,8 +23,12 @@ void GameState::init() {
 		});
 
 	// I want to add an "about button" but how do I make a pop-up on a currnet game state? And do I have to make another button to close it? :(
-	// Dungeon initialization
+	// Dungeon Initialization
 	mygraph.initializeGraphStructure();
+
+	// Grid and Views Initialization
+	my_map.buildViews();
+	my_map.initializeTiles();
 }
 
 void GameState::updateStartScreen()
@@ -45,6 +49,14 @@ void GameState::updateStartScreen()
 
 void GameState::updateLevelScreen()
 {
+	TileMap& tilemap = my_map.getTileMap();
+	tilemap.clearHover();
+
+	int row, col;
+	if (inside_canvas) {
+		tilemap.canvasToTile(cx, cy, row, col);
+		tilemap.setHoveredTile(row, col);
+	}
 }
 
 void GameState::updateEndScreen()
@@ -82,12 +94,11 @@ void GameState::drawLevelScreen()
 	br.fill_color[2] = 46 / 255.0f;  // B
 	graphics::drawRect(CANVAS_WIDTH / 2, CANVAS_HEIGHT / 2, CANVAS_WIDTH, CANVAS_HEIGHT, br);
 	
-	DungeonMap my_map(&mygraph);
 	my_map.draw();
 
 
 	if (debug) {
-		TileMap tilemap;
+		TileMap& tilemap = my_map.getTileMap();
 		tilemap.drawGridDebug();
 	}
 }
@@ -170,18 +181,6 @@ void GameState::onWindowResized(unsigned int w, unsigned int h)
 {
 	setWindowDimensions(w, h);
 	updateMouseCanvasCoords();
-}
-
-bool GameState::canvas2tile(int px, int py, int& tx, int& ty) {
-	tx = px / TILE_SIZE;
-	ty = py / TILE_SIZE;
-
-	return tx >= 0 && tx < TILES_X &&
-		ty >= 0 && ty < TILES_Y;
-}
-
-GameState::GameState()
-{
 }
 
 GameState::~GameState()

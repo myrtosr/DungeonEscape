@@ -15,17 +15,19 @@ class DungeonMap {
 	
 public:
 	DungeonMap(DungeonGraph* graph)
-		: graph(graph), tileMap() {
+		: graph(graph) {
 	};
 
-	//setup
+	TileMap& getTileMap() { return tileMap; };
+
+	// Initializing our setup
 	void buildViews(); // building RoomView / PassageView / DoorView
 	void initializeTiles(); // passes tileTypes in TileMap
 
-	//runtime
+	// Runtime handling
 	void update();
 	void draw();
 
-	TileMap& getTileMap();
+	// TileMap& getTileMap();
 
 };

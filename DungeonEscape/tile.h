@@ -17,6 +17,7 @@ class Tile {
 	int x, y;  //grid coordinates
 	TileType type;
 
+	bool hovered = false;
 	bool clickable = false;
 	bool occupied = false;
 
@@ -31,6 +32,9 @@ public:
 
 	TileType getType() const { return type; }
 	void setType(TileType t) { type = t; }
+
+	bool isHovered() const { return hovered; }
+	void setHovered(bool h) { hovered = h; }
 
 	bool isClickable() const { return clickable; }
 	void setClickable(bool c) { clickable = c; }

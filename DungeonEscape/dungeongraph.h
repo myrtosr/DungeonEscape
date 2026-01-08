@@ -20,5 +20,6 @@ public:
 
 	void initializeGraphStructure();
 	RoomNode* getRoomById(int id);
+	Passage* getPassageById(int id);
 	
 };

@@ -48,11 +48,10 @@ public:
 	float window2canvasY(float y);
 	void setWindowDimensions(unsigned int w, unsigned int h) { window_width = w; window_height = h; }
 	void onWindowResized(unsigned int w, unsigned int h);
-	bool canvas2tile(int px, int py, int& tx, int& ty);
 	void setDebugMode(bool d) { debug = d; }
 	bool getDebugMode() const { return debug; }
 
 	// Constructor & Destructor 
-	GameState();
+	GameState() : my_map(&mygraph) {};
 	~GameState();
 };
