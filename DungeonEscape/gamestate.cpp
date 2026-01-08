@@ -22,7 +22,7 @@ void GameState::init() {
 		"exit.png"
 		});
 
-	// I want to add an "about button" but how do I make a pop-up on a currnet game state? And do I have to make another button to close it? :(
+	// I want to add an "about button" but how do I make a pop-up on a current game state? And do I have to make another button to close it? :(
 	// Dungeon Initialization
 	mygraph.initializeGraphStructure();
 
@@ -88,7 +88,7 @@ void GameState::drawLevelScreen()
 {
 	graphics::Brush br;
 	br.outline_opacity = 0.0f;
-	// division by 255.0f -> convert regular RGB values (0–255) to range for SGG (0.0–1) 
+	// Division by 255.0f -> convert regular RGB values (0–255) to range for SGG (0.0–1) 
 	br.fill_color[0] = 26 / 255.0f;   // R
 	br.fill_color[1] = 3 / 255.0f;  // G
 	br.fill_color[2] = 46 / 255.0f;  // B

@@ -27,7 +27,4 @@ public:
 	// Runtime handling
 	void update();
 	void draw();
-
-	// TileMap& getTileMap();
-
 };

@@ -27,7 +27,7 @@ void DungeonGraph::addPassage(Passage* passage)
 
 void DungeonGraph::initializeGraphStructure() {
     // constructing the 8 RoomNodes of our graph
-    for (int i = 1; i <= 8; i++) { // 0 = start node and 7 = exit node
+    for (int i = 1; i <= 8; i++) { // 1 = start node and 8 = exit node
         addRoom(new RoomNode(i));
     }
 
