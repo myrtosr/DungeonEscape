@@ -38,7 +38,8 @@ void RoomView::applyToTileMap(TileMap& map) {
 			// ROOM FLOOR
 			else {
 				tile.setType(TileType::FLOOR);
-				tile.setClickable(roomNode->isAvailable());
+				tile.setClickable(true);
+				//tile.setClickable(roomNode->isAvailable());
 			}
 		}
 	}

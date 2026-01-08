@@ -56,6 +56,13 @@ void GameState::updateLevelScreen()
 	if (inside_canvas) {
 		tilemap.canvasToTile(cx, cy, row, col);
 		tilemap.setHoveredTile(row, col);
+
+		if (mouse.button_left_released) {
+			Tile& t = tilemap.at(row, col);
+			if (t.isClickable())
+				tilemap.setClickedTile(row, col);
+		}
+
 	}
 }
 
