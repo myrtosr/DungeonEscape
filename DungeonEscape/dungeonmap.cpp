@@ -13,13 +13,13 @@ void DungeonMap::buildViews()
     roomViews.emplace_back(r2, TileCoord(4, 9), TileCoord(10, 13));
 
     RoomNode* r3 = graph->getRoomById(3);
-    roomViews.emplace_back(r3, TileCoord(1, 14), TileCoord(3, 17));
+    roomViews.emplace_back(r3, TileCoord(1, 14), TileCoord(3, 18));
 
     RoomNode* r4 = graph->getRoomById(4);
     roomViews.emplace_back(r4, TileCoord(14, 9), TileCoord(18, 13));
 
     RoomNode* r5 = graph->getRoomById(5);
-    roomViews.emplace_back(r5, TileCoord(15, 1), TileCoord(17, 4));
+    roomViews.emplace_back(r5, TileCoord(15, 1), TileCoord(17, 5));
 
     RoomNode* r6 = graph->getRoomById(6);
     roomViews.emplace_back(r6, TileCoord(4, 18), TileCoord(10, 26));
@@ -42,7 +42,7 @@ void DungeonMap::buildViews()
     passageViews.emplace_back(p3, TileCoord(11, 11), TileCoord(13, 11));
 
     Passage* p4 = graph->getPassageById(4);
-    passageViews.emplace_back(p4, TileCoord(16, 5), TileCoord(16, 8));
+    passageViews.emplace_back(p4, TileCoord(16, 6), TileCoord(16, 8));
 
     Passage* p5 = graph->getPassageById(5);
     passageViews.emplace_back(p5, TileCoord(16, 14), TileCoord(16, 17));

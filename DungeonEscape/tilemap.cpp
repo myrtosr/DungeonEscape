@@ -47,7 +47,6 @@ void TileMap::draw()
         {
 
         case TileType::FLOOR:
-            
             br.fill_color[0] = 106/255.0f;
             br.fill_color[1] = 163/255.0f;
             br.fill_color[2] = 236/255.0f;
