@@ -3,10 +3,12 @@
 #include "passage.h"
 #include "tilemap.h"
 
+
 class PassageView {
 	Passage* passage; // pointer to corresponding passage-edge 
 	// Conenction to passages could also be achieved with passageID since it's a unique property?
 
+	
 	TileCoord first; // the first tile of a passage
 	TileCoord last;  // the last tile of a passage
 	TileCoord corner; // corner in case of cornered passage
