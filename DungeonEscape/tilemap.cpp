@@ -63,13 +63,18 @@ void TileMap::draw()
             br.fill_color[2] = 134/ 255.0f;
             break;
         
-        /*
-        case TileType::DOOR:
-            br.fill_color[0] = 0.8f;
-            br.fill_color[1] = 0.5f;
-            br.fill_color[2] = 0.2f;
+        
+        case TileType::DOOR_LOCKED:
+            br.fill_color[0] = 245 / 255.0f;
+            br.fill_color[1] = 78 / 255.0f;
+            br.fill_color[2] = 187 / 255.0f;
             break;
-        */
+        
+        case TileType::DOOR_OPEN:
+            br.fill_color[0] = 130 / 255.0f;
+            br.fill_color[1] = 118 / 255.0f;
+            br.fill_color[2] = 245 / 255.0f;
+            break;
 
         case TileType::PASSAGE:
             br.fill_color[0] = 0.0f;

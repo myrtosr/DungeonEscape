@@ -141,6 +141,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="button.cpp" />
+    <ClCompile Include="door.cpp" />
     <ClCompile Include="dungeongraph.cpp" />
     <ClCompile Include="dungeonmap.cpp" />
     <ClCompile Include="gameobject.cpp" />
@@ -153,6 +154,7 @@
   <ItemGroup>
     <ClInclude Include="button.h" />
     <ClInclude Include="config.h" />
+    <ClInclude Include="door.h" />
     <ClInclude Include="dungeongraph.h" />
     <ClInclude Include="dungeonmap.h" />
     <ClInclude Include="gameobject.h" />

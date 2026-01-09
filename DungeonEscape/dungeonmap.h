@@ -3,6 +3,7 @@
 #include "tilemap.h"
 #include "roomview.h"
 #include "passageview.h"
+#include "door.h"
 #include <vector>
 #include "dungeongraph.h"
 
@@ -12,6 +13,7 @@ class DungeonMap {
 
 	std::vector<RoomView> roomViews;
 	std::vector<PassageView> passageViews;
+	std::vector<Door> doors;
 	
 public:
 	DungeonMap(DungeonGraph* graph)
@@ -22,6 +24,7 @@ public:
 
 	// Initializing our setup
 	void buildViews(); // building RoomView / PassageView / DoorView
+	void initializeDoorTiles();
 	void initializeTiles(); // passes tileTypes in TileMap
 
 	// Runtime handling

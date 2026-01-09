@@ -61,6 +61,45 @@ void DungeonMap::buildViews()
 
     Passage* p10 = graph->getPassageById(10);
     passageViews.emplace_back(p10, TileCoord(16, 27), TileCoord(16, 29));
+
+    // Door Initialization
+    doors.emplace_back(1, TileCoord(7, 5));
+    doors[0].addPassage(p1);
+    doors[0].unlock();
+
+    doors.emplace_back(3, TileCoord(2,14));
+    doors[0].addPassage(p2);
+
+    doors.emplace_back(4, TileCoord(14, 11));
+    doors[1].addPassage(p3);
+
+    doors.emplace_back(5, TileCoord(16, 5));
+    doors[2].addPassage(p4);
+
+    doors.emplace_back(6, TileCoord(7, 18));
+    doors[3].addPassage(p6);
+    doors[3].addPassage(p7);
+
+
+    doors.emplace_back(7, TileCoord(16, 18));
+    doors[4].addPassage(p5);
+
+    doors.emplace_back(8, TileCoord(16, 30));
+    doors[5].addPassage(p10);
+
+    doors.emplace_back(2, TileCoord(7, 13));
+    doors[6].addPassage(p8);
+    doors[6].addPassage(p9);
+}
+
+void DungeonMap::initializeDoorTiles()
+{
+    for (Door d : doors) {
+        Tile& t = tileMap.at(d.getRow(), d.getCol());
+        t.setType(d.isUnlocked() ? TileType::DOOR_OPEN
+            : TileType::DOOR_LOCKED);
+        t.setClickable(true);
+    }
 }
 
 void DungeonMap::initializeTiles()
@@ -71,7 +110,7 @@ void DungeonMap::initializeTiles()
     // Passages
     for (PassageView& ps : passageViews)
         ps.applyToTileMap(tileMap);
-
+    initializeDoorTiles();
 }
 
 void DungeonMap::draw()

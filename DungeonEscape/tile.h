@@ -9,7 +9,8 @@ enum class TileType {
 	WALL_TR,
 	WALL_BL,
 	WALL_BR,
-	DOOR,
+	DOOR_LOCKED,
+	DOOR_OPEN,
 	PASSAGE
 };
 

@@ -42,6 +42,9 @@
     <ClCompile Include="dungeonmap.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="door.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="gamestate.h">
@@ -81,6 +84,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="passageview.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="door.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
