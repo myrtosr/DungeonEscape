@@ -65,7 +65,8 @@ void DungeonMap::buildViews()
     // Door Initialization
     doors.emplace_back(1, TileCoord(7, 5));
     doors[0].addPassage(p1);
-    doors[0].unlock();
+    doors[0].unlock(); // ΡΗΤΑ unlock first door -> also unlocks the passages she controls (p1) *thumbs up*
+    
 
     doors.emplace_back(3, TileCoord(2,14));
     doors[0].addPassage(p2);
