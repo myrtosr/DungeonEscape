@@ -22,4 +22,6 @@ public:
 	RoomNode* getRoomById(int id);
 	Passage* getPassageById(int id);
 	
+	DungeonGraph();
+	~DungeonGraph();
 };

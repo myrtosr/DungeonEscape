@@ -7,9 +7,9 @@ class Door {
 	int id; // I'll set ids based on the room the door belongs to ;)
 	TileCoord pos; // door position on tilemap
 
-	bool unlocked = false;
+	bool unlocked;
 
-	// Why vector? Some doors control 2 passages :[
+	// Why vector? Some doors control more than one passage :[
 	std::vector<Passage*> controlledPassages; 
 
 public:

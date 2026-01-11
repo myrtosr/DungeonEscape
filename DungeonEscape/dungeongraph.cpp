@@ -56,5 +56,17 @@ Passage* DungeonGraph::getPassageById(int id) {
     return passagesById[id];
 }
 
+// Constructor & Destructor
+DungeonGraph::DungeonGraph()
+{
+}
+
+// Deleting dynamically created objects
+DungeonGraph::~DungeonGraph()
+{
+    for (auto r : rooms) delete r;
+    for (auto p : passages) delete p;
+}
+
 //pathfind method
 //updateWeight() 
