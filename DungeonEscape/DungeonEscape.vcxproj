@@ -148,6 +148,7 @@
     <ClCompile Include="gamestate.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="passageview.cpp" />
+    <ClCompile Include="player.cpp" />
     <ClCompile Include="roomview.cpp" />
     <ClCompile Include="tilemap.cpp" />
   </ItemGroup>
@@ -161,6 +162,7 @@
     <ClInclude Include="gamestate.h" />
     <ClInclude Include="passage.h" />
     <ClInclude Include="passageview.h" />
+    <ClInclude Include="player.h" />
     <ClInclude Include="roomnode.h" />
     <ClInclude Include="roomview.h" />
     <ClInclude Include="tile.h" />

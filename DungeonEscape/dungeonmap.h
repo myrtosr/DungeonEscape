@@ -34,4 +34,5 @@ public:
 	// Runtime handling
 	void update();
 	void draw();
+	void init();
 };

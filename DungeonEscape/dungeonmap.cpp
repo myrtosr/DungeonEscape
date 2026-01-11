@@ -156,3 +156,8 @@ void DungeonMap::draw()
     //...
 }
 
+void DungeonMap::init()
+{
+
+}
+

@@ -1,8 +1,7 @@
 #include "gameobject.h"
-// #include "game.h"
 
-GameObject::GameObject(const Game& mygame)
-	: game(mygame)
+GameObject::GameObject(const GameState& mygame)
+	: gamestate(mygame)
 {
 
 }

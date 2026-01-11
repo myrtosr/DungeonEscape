@@ -1,13 +1,12 @@
 #pragma once
 
-
 // class Collidable {}
 
 class GameObject {
 protected:
-	const class Game& game;
+	const class GameState& gamestate;
 public:
-	GameObject(const class Game& mygame);
+	GameObject(const class GameState& mygame);
 	virtual void update() = 0;
 	virtual void draw() = 0;
 	virtual void init() = 0;
