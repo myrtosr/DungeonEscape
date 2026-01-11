@@ -24,5 +24,7 @@ public:
 
 	void addEntrance(TileCoord e) { entrances.push_back(e); }
 
+	bool contains(int r, int c); // checks if a tile is within the floor(!) bounds of a room 
+
 	void applyToTileMap(TileMap& map); 
 };

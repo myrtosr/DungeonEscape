@@ -13,7 +13,7 @@ class DungeonMap {
 
 	std::vector<RoomView> roomViews;
 	std::vector<PassageView> passageViews;
-	std::vector<Door> doors;
+	std::vector<Door*> doors;
 	
 public:
 	DungeonMap(DungeonGraph* graph)
@@ -26,6 +26,10 @@ public:
 	void buildViews(); // building RoomView / PassageView / DoorView
 	void initializeDoorTiles();
 	void initializeTiles(); // passes tileTypes in TileMap
+	//------------------------
+
+	Door* getDoorAt(int r, int c);
+	RoomNode* getRoomAt(int r, int c);
 
 	// Runtime handling
 	void update();

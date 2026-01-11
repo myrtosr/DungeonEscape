@@ -27,6 +27,10 @@ class GameState {
 	bool inside_canvas = false;
 	void updateMouseCanvasCoords();
 	//------------------------
+	// Handling mouse click events 
+	void handleDoorClick(int r, int c);
+	void handleFloorClick(int r, int c);
+	//------------------------
 	unsigned int window_width = WINDOW_WIDTH;
 	unsigned int window_height = WINDOW_HEIGHT;
 	// DungeonGraph initialization

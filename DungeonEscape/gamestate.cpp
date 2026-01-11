@@ -36,7 +36,7 @@ void GameState::updateStartScreen()
 	for (auto& b : startButtons) {
 		b.updateHover(cx, cy);
 
-		if (b.isClicked(mouse.button_left_pressed)) {
+		if (b.isClicked(mouse.button_left_released)) {
 			if (b.getTexture() == "start.png") {
 				status = STATUS_PLAYING;
 			}
@@ -55,15 +55,28 @@ void GameState::updateLevelScreen()
 	int row, col;
 	if (inside_canvas) {
 		tilemap.canvasToTile(cx, cy, row, col);
-		tilemap.setHoveredTile(row, col);
+		tilemap.setHoveredTile(row, col); // for visual feedback
 
 		if (mouse.button_left_released) {
 			Tile& t = tilemap.at(row, col);
-			if (t.isClickable())
-				tilemap.setClickedTile(row, col);
+			if (t.isClickable()) {
+				tilemap.setClickedTile(row, col);  // for visual feedback
+				// Door tile is clicked
+				if (t.getType() == TileType::DOOR_LOCKED || t.getType() == TileType::DOOR_OPEN) {
+					handleDoorClick(row, col);
+					return;
+				}
+				// Floor tile is clicked
+				if (t.getType() == TileType::FLOOR) {
+					handleFloorClick(row, col);
+					return;
+				}
+
+			}	
 		}
 
 	}
+	my_map.update(); // Dungeon Map updates the tile types
 }
 
 void GameState::updateEndScreen()
@@ -122,6 +135,30 @@ void GameState::updateMouseCanvasCoords()
 	inside_canvas =
 		cx >= 0 && cx <= CANVAS_WIDTH &&
 		cy >= 0 && cy <= CANVAS_HEIGHT;
+}
+
+void GameState::handleDoorClick(int r, int c)
+{
+	Door* door = my_map.getDoorAt(r, c);
+	if (door) {
+		if (door->isUnlocked()) {
+			return; // door already unlocked -> nothing happens
+		}
+		/* else if (player has the key in inventory)
+			door->unlock(); 
+		}
+		else {
+			show message "Door is locked! You need a key..."
+		}*/
+	}
+}
+
+void GameState::handleFloorClick(int r, int c)
+{
+	RoomNode* room = my_map.getRoomAt(r, c);
+	if (room && room->isAvailable()) {
+		// trigger pathfinding to tile {r, c}
+	}
 }
 
 void GameState::update()

@@ -40,11 +40,11 @@ void DungeonMap::buildViews()
     RoomNode* r8 = graph->getRoomById(8);
     roomViews.emplace_back(r8, TileCoord(13, 30), TileCoord(18, 33));
     // no entrances, only door
-    
+
     // Passage Initialization
     Passage* p1 = graph->getPassageById(1);
-    passageViews.emplace_back(p1, TileCoord(7,6), TileCoord(7,8));
-    
+    passageViews.emplace_back(p1, TileCoord(7, 6), TileCoord(7, 8));
+
     Passage* p2 = graph->getPassageById(2);
     passageViews.emplace_back(p2, TileCoord(3, 11), TileCoord(2, 13), TileCoord(2, 11)); // corner passage
 
@@ -73,36 +73,36 @@ void DungeonMap::buildViews()
     passageViews.emplace_back(p10, TileCoord(16, 27), TileCoord(16, 29));
 
     // Door Initialization
-    doors.emplace_back(3, TileCoord(2,14));
-    doors[0].addPassage(p2);
+    doors.push_back(new Door(3, { 2,14 }));
+    doors[0]->addPassage(p2);
 
-    doors.emplace_back(4, TileCoord(14, 11));
-    doors[1].addPassage(p3);
+    doors.push_back(new Door(4, { 14,11 }));
+    doors[1]->addPassage(p3);
 
-    doors.emplace_back(5, TileCoord(16, 5));
-    doors[2].addPassage(p4);
+    doors.push_back(new Door(5, { 16, 5 }));
+    doors[2]->addPassage(p4);
 
-    doors.emplace_back(6, TileCoord(7, 18));
-    doors[3].addPassage(p6);
-    doors[3].addPassage(p7);
+    doors.push_back(new Door(6, { 7, 18 }));
+    doors[3]->addPassage(p6);
+    doors[3]->addPassage(p7);
 
 
-    doors.emplace_back(7, TileCoord(16, 18));
-    doors[4].addPassage(p5);
+    doors.push_back(new Door(7, { 16, 18 }));
+    doors[4]->addPassage(p5);
 
-    doors.emplace_back(8, TileCoord(16, 30));
-    doors[5].addPassage(p10);
+    doors.push_back(new Door(8, { 16, 30 }));
+    doors[5]->addPassage(p10);
 
-    doors.emplace_back(2, TileCoord(7, 13));
-    doors[6].addPassage(p8);
-    doors[6].addPassage(p9);
+    doors.push_back(new Door(2, { 7, 13 }));
+    doors[6]->addPassage(p8);
+    doors[6]->addPassage(p9);
 }
 
 void DungeonMap::initializeDoorTiles()
 {
-    for (Door d : doors) {
-        Tile& t = tileMap.at(d.getRow(), d.getCol());
-        t.setType(d.isUnlocked() ? TileType::DOOR_OPEN
+    for (Door* d : doors) {
+        Tile& t = tileMap.at(d->getRow(), d->getCol());
+        t.setType(d->isUnlocked() ? TileType::DOOR_OPEN
             : TileType::DOOR_LOCKED);
         t.setClickable(true);
     }
@@ -117,6 +117,35 @@ void DungeonMap::initializeTiles()
     for (PassageView& ps : passageViews)
         ps.applyToTileMap(tileMap);
     initializeDoorTiles();
+}
+
+Door* DungeonMap::getDoorAt(int r, int c)
+{
+    for (Door* d : doors) {
+        if (d->getRow() == r && d->getCol() == c)
+            return d;
+    }
+    return nullptr;
+}
+
+RoomNode* DungeonMap::getRoomAt(int r, int c)
+{
+    for (RoomView& rv : roomViews) {
+        if (rv.contains(r, c)) {
+            return rv.getRoomNode();
+        }
+    }
+    return nullptr;
+}
+
+void DungeonMap::update()
+{
+    for (Door* door : doors) {
+        Tile& t = tileMap.at(door->getRow(), door->getCol());
+
+        if (door->isUnlocked())
+            t.setType(TileType::DOOR_OPEN);
+    }
 }
 
 void DungeonMap::draw()

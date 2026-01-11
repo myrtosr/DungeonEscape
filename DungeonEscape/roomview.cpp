@@ -2,6 +2,12 @@
 #include "tile.h"
 
 
+bool RoomView::contains(int r, int c)
+{
+	// Within floor tile bounds! Excluding walls
+	return r > topLeft.x && r < bottomRight.x && c > topLeft.y && c < bottomRight.y;
+}
+
 void RoomView::applyToTileMap(TileMap& map) {
 	for (int row = topLeft.x; row <= bottomRight.x; ++row) {
 		for (int col = topLeft.y; col <= bottomRight.y; ++col) {
