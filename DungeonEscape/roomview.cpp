@@ -41,6 +41,14 @@ void RoomView::applyToTileMap(TileMap& map) {
 				tile.setClickable(true);
 				//tile.setClickable(roomNode->isAvailable());
 			}
+
+			for (TileCoord e : entrances) {
+				if (e.x == row && e.y == col) {
+					tile.setType(TileType::FLOOR); // entrances should act as floor tiles
+					tile.setClickable(true);
+					break;
+				}
+			}
 		}
 	}
 }

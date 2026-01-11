@@ -10,6 +10,7 @@ class RoomView {
 	TileCoord topLeft; // the first tile of a room
 	TileCoord bottomRight;  // the last tile of a room
 	// The bounds of the room get calculated based on those
+	std::vector<TileCoord> entrances; // tiles that act as entrances - with no door logic applied
 
 public:
 	RoomView(RoomNode* node, TileCoord tl, TileCoord br)
@@ -20,6 +21,8 @@ public:
 	RoomNode* getRoomNode() const { return roomNode; }
 	TileCoord getTopLeft() const { return topLeft; }
 	TileCoord getBottomRight() const { return bottomRight; }
+
+	void addEntrance(TileCoord e) { entrances.push_back(e); }
 
 	void applyToTileMap(TileMap& map); 
 };

@@ -15,11 +15,14 @@ class Passage {
 
 public:
 
-	// Constructor
+	// Constructors
 	Passage(int id, int from, int to)
 		: id(id), roomFromId(from), roomToId(to) {
 	};
 
+	Passage(int id, int from, int to, int rw)
+		: id(id), roomFromId(from), roomToId(to), realWeight(rw) {
+	};
 
 	// Setters & getters
 	void setWeight(int w) { weight = w; }

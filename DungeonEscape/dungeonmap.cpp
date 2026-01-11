@@ -8,28 +8,38 @@ void DungeonMap::buildViews()
     // RoomViews Initialiasation
     RoomNode* r1 = graph->getRoomById(1);
     roomViews.emplace_back(r1, TileCoord(5, 1), TileCoord(9, 5));
+    roomViews[0].addEntrance({ 7,5 });
 
     RoomNode* r2 = graph->getRoomById(2);
     roomViews.emplace_back(r2, TileCoord(4, 9), TileCoord(10, 13));
+    roomViews[1].addEntrance({ 7, 9 });
+    roomViews[1].addEntrance({ 4, 11 });
+    roomViews[1].addEntrance({ 10, 11 });
 
     RoomNode* r3 = graph->getRoomById(3);
     roomViews.emplace_back(r3, TileCoord(1, 14), TileCoord(3, 18));
+    // no entrances, only door
 
     RoomNode* r4 = graph->getRoomById(4);
     roomViews.emplace_back(r4, TileCoord(14, 9), TileCoord(18, 13));
+    roomViews[3].addEntrance({ 16, 9 });
+    roomViews[3].addEntrance({ 16, 13 });
 
     RoomNode* r5 = graph->getRoomById(5);
     roomViews.emplace_back(r5, TileCoord(15, 1), TileCoord(17, 5));
+    // no entrances, only door
 
     RoomNode* r6 = graph->getRoomById(6);
     roomViews.emplace_back(r6, TileCoord(4, 18), TileCoord(10, 26));
+    // no entrances, only door
 
     RoomNode* r7 = graph->getRoomById(7);
     roomViews.emplace_back(r7, TileCoord(13, 18), TileCoord(18, 26));
+    roomViews[6].addEntrance({ 16, 26 });
 
     RoomNode* r8 = graph->getRoomById(8);
     roomViews.emplace_back(r8, TileCoord(13, 30), TileCoord(18, 33));
-
+    // no entrances, only door
     
     // Passage Initialization
     Passage* p1 = graph->getPassageById(1);
@@ -63,11 +73,6 @@ void DungeonMap::buildViews()
     passageViews.emplace_back(p10, TileCoord(16, 27), TileCoord(16, 29));
 
     // Door Initialization
-    doors.emplace_back(1, TileCoord(7, 5));
-    doors[0].addPassage(p1);
-    doors[0].unlock(); // ΡΗΤΑ unlock first door -> also unlocks the passages she controls (p1) *thumbs up*
-    
-
     doors.emplace_back(3, TileCoord(2,14));
     doors[0].addPassage(p2);
 
