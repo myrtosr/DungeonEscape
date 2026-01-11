@@ -3,8 +3,10 @@
 enum class TileType {
 	EMPTY,
 	FLOOR,
-	WALL_HOR,
-	WALL_VER,
+	WALL_T,
+	WALL_B,
+	WALL_L,
+	WALL_R,
 	WALL_TL,
 	WALL_TR,
 	WALL_BL,

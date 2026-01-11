@@ -52,16 +52,19 @@ void TileMap::draw()
             br.fill_color[2] = 236/255.0f;
             break;
 
-        case TileType::WALL_HOR:
-        case TileType::WALL_VER:
-        case TileType::WALL_TL:
+        case TileType::WALL_T: 
+        case TileType::WALL_B: 
+        case TileType::WALL_L:
+        case TileType::WALL_R: 
+        case TileType::WALL_TL: 
         case TileType::WALL_TR:
-        case TileType::WALL_BL:
-        case TileType::WALL_BR:
-            br.fill_color[0] = 247/ 255.0f;
+        case TileType::WALL_BL: 
+        case TileType::WALL_BR: 
+            br.fill_color[0] = 247 / 255.0f;
             br.fill_color[1] = 229/ 255.0f;
             br.fill_color[2] = 134/ 255.0f;
             break;
+            
         
         
         case TileType::DOOR_LOCKED:

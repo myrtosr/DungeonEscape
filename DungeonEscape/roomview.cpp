@@ -34,12 +34,18 @@ void RoomView::applyToTileMap(TileMap& map) {
 			}
 
 			// HORIZONTAL WALLS
-			else if (isTop || isBottom) {
-				tile.setType(TileType::WALL_HOR);
+			else if (isTop) {
+				tile.setType(TileType::WALL_T);
+			}
+			else if(isBottom) {
+				tile.setType(TileType::WALL_B);
 			}
 			// VERTICAL WALLS
-			else if (isLeft || isRight) {
-				tile.setType(TileType::WALL_VER);
+			else if (isLeft) {
+				tile.setType(TileType::WALL_L);
+			}
+			else if (isRight) {
+				tile.setType(TileType::WALL_R);
 			}
 			// ROOM FLOOR
 			else {
