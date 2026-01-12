@@ -95,7 +95,7 @@ void GameState::drawStartScreen()
 	graphics::setFont(std::string(ASSET_PATH) + "title_font.ttf");
 
 	graphics::Brush br;
-	br.texture = std::string(ASSET_PATH) + "background2.png";
+	br.texture = std::string(ASSET_PATH) + "background.png";
 	br.outline_opacity = 0.0f;
 	graphics::drawRect(CANVAS_WIDTH / 2, CANVAS_HEIGHT / 2, CANVAS_WIDTH, CANVAS_HEIGHT, br);
 	

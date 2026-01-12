@@ -47,23 +47,28 @@ void TileMap::draw()
         {
 
         case TileType::FLOOR:
+            /*
             br.fill_color[0] = 106/255.0f;
             br.fill_color[1] = 163/255.0f;
             br.fill_color[2] = 236/255.0f;
+            */
+            br.texture = std::string(ASSET_PATH) + "FLOOR.png";
             break;
 
-        case TileType::WALL_T: 
-        case TileType::WALL_B: 
-        case TileType::WALL_L:
-        case TileType::WALL_R: 
-        case TileType::WALL_TL: 
-        case TileType::WALL_TR:
-        case TileType::WALL_BL: 
-        case TileType::WALL_BR: 
+        case TileType::WALL_T: br.texture = std::string(ASSET_PATH) + "T.png"; break;
+        case TileType::WALL_B: br.texture = std::string(ASSET_PATH) + "B.png"; break;
+        case TileType::WALL_L: br.texture = std::string(ASSET_PATH) + "L.png"; break;
+        case TileType::WALL_R: br.texture = std::string(ASSET_PATH) + "R.png"; break;
+        case TileType::WALL_TL: br.texture = std::string(ASSET_PATH) + "TL.png"; break;
+        case TileType::WALL_TR: br.texture = std::string(ASSET_PATH) + "TR.png"; break;
+        case TileType::WALL_BL: //br.texture = std::string(ASSET_PATH) + "WALL1.png"; break;
+        case TileType::WALL_BR: //br.texture = std::string(ASSET_PATH) + "WALL1.png"; break;
+            
             br.fill_color[0] = 247 / 255.0f;
             br.fill_color[1] = 229/ 255.0f;
             br.fill_color[2] = 134/ 255.0f;
             break;
+            
             
         
         
@@ -80,9 +85,12 @@ void TileMap::draw()
             break;
 
         case TileType::PASSAGE:
+            /*
             br.fill_color[0] = 0.0f;
             br.fill_color[1] = 0.4f;
             br.fill_color[2] = 0.0f;
+            */
+            br.texture = std::string(ASSET_PATH) + "FLOOR.png";
             break;
         
 
