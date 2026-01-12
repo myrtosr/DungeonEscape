@@ -9,17 +9,19 @@
 
 class GameState {
 	// Game states -----------
-	typedef enum { STATUS_START, STATUS_PLAYING, STATUS_END } status_t;
+	typedef enum { STATUS_START, STATUS_PLAYING, STATUS_END, STATUS_QUIT } status_t;
 	status_t status = STATUS_START;
 	//------------------------
 	// Update functions for different states of the game
 	void updateStartScreen();
 	void updateLevelScreen();
 	void updateEndScreen();
+	void updateQuitScreen();
 	// Draw functions for different states of the game
 	void drawStartScreen();
 	void drawLevelScreen();
 	void drawEndScreen();
+	void drawQuitScreen();
 	//------------------------
 	// Mouse handling
 	graphics::MouseState mouse; // keep this in check in the future - its uninitialized idk if that could cause problems, probs not
@@ -44,6 +46,13 @@ class GameState {
 	// Button Initialization
 	std::vector<Button> startButtons; // All buttons for the start menu
 	// we can add more buttons for other states of the game if we want :)
+	// Handling message outputs with time for end & quit screen
+	bool quitting = false;        // quit screen sequence starts
+	float quitStartTime = -1.0f;  // global time when quit screen started
+
+	bool ending = false;          // true when exit screen sequence starts
+	float endStartTime = -1.0f;   // global time when end screen started
+	//------------------------
 	bool debug = false;
 public:
 	void update();

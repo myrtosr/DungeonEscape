@@ -34,12 +34,10 @@ void Player::draw()
     gamestate.getDungeonMap().getTileMap().tileToCanvas(pos.x, pos.y, cx, cy);
 
     graphics::Brush br;
-    br.fill_color[0] = 1.0f;
-    br.fill_color[1] = 0.2f;
-    br.fill_color[2] = 0.2f;
     br.outline_opacity = 0.0f;
+	br.texture = std::string(ASSET_PATH) + "char.png";
 
-    graphics::drawDisk(cx, cy, TILE_SIZE * 0.35f, br);
+    graphics::drawRect(cx, cy - 12, TILE_SIZE * 1.15 , TILE_SIZE * 1.3,  br);
 }
 
 void Player::init()

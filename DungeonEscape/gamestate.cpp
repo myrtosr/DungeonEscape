@@ -19,7 +19,7 @@ void GameState::init() {
 		CANVAS_HEIGHT / 2 + 270,
 		170,
 		60,
-		"exit.png"
+		"quit.png"
 		});
 
 	// I want to add an "about button" but how do I make a pop-up on a current game state? And do I have to make another button to close it? :(
@@ -45,8 +45,8 @@ void GameState::updateStartScreen()
 			if (b.getTexture() == "start.png") {
 				status = STATUS_PLAYING;
 			}
-			else if (b.getTexture() == "exit.png") {
-				status = STATUS_END;
+			else if (b.getTexture() == "quit.png") {
+				status = STATUS_QUIT;
 			}
 		}
 	}
@@ -88,6 +88,21 @@ void GameState::updateLevelScreen()
 
 void GameState::updateEndScreen()
 {
+}
+
+void GameState::updateQuitScreen()
+{
+	if (!quitting) {
+		quitting = true;
+		quitStartTime = graphics::getGlobalTime(); // start counting for a goodbye message output
+	}
+
+	float elapsed = graphics::getGlobalTime() - quitStartTime;
+
+	if (elapsed >= 2300.0f) { // show goodbye message for ~2 seconds
+	graphics::destroyWindow(); // close the SGG window
+	exit(0);                   // ensure program terminates
+	}
 }
 
 void GameState::drawStartScreen()
@@ -135,6 +150,28 @@ void GameState::drawLevelScreen()
 
 void GameState::drawEndScreen()
 {
+}
+
+void GameState::drawQuitScreen()
+{
+	graphics::Brush br;
+	br.outline_opacity = 0.0f;
+
+	// Background
+	br.fill_color[0] = 75 / 255.0f;   // R
+	br.fill_color[1] = 59 / 255.0f;  // G
+	br.fill_color[2] = 131 / 255.0f;  // B
+	graphics::drawRect(CANVAS_WIDTH / 2, CANVAS_HEIGHT / 2, CANVAS_WIDTH, CANVAS_HEIGHT, br);
+
+	// Goodbye text
+	br.fill_color[0] = 1.0f;
+	br.fill_color[1] = 1.0f;
+	br.fill_color[2] = 1.0f;
+	graphics::setFont(std::string(ASSET_PATH) + "simple_font.ttf");
+
+	char info[100];
+	sprintf_s(info, "Bye bye! Exiting the game...");
+	graphics::drawText(CANVAS_WIDTH / 2 - 300, CANVAS_HEIGHT / 2, 50, info, br);
 }
 
 void GameState::updateMouseCanvasCoords()
@@ -185,6 +222,9 @@ void GameState::update()
 	else if (status == STATUS_END) {
 		updateEndScreen();
 	}
+	else if (status == STATUS_QUIT) {
+		updateQuitScreen();	
+	}
 }
 
 void GameState::draw()
@@ -198,6 +238,9 @@ void GameState::draw()
 	}
 	else if (status == STATUS_END) {
 		drawEndScreen();
+	}
+	else if (status == STATUS_QUIT) {
+		drawQuitScreen();
 	}
 
 	graphics::Brush br;
