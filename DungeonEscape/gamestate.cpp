@@ -29,6 +29,11 @@ void GameState::init() {
 	// Grid and Views Initialization
 	my_map.buildViews();
 	my_map.initializeTiles();
+
+	// Player Initialization
+	player = new Player(*this);
+	player->init();
+	player->spawnAt({ 7, 3 }, 1);
 }
 
 void GameState::updateStartScreen()
@@ -76,7 +81,9 @@ void GameState::updateLevelScreen()
 		}
 
 	}
-	my_map.update(); // Dungeon Map updates the tile types
+	my_map.update(); // DungeonMap updates the tile types
+
+	player->update();
 }
 
 void GameState::updateEndScreen()
@@ -116,11 +123,14 @@ void GameState::drawLevelScreen()
 	
 	my_map.draw();
 
+	player->draw();
 
 	if (debug) {
 		TileMap& tilemap = my_map.getTileMap();
 		tilemap.drawGridDebug();
 	}
+
+
 }
 
 void GameState::drawEndScreen()

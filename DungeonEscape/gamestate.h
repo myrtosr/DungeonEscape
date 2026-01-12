@@ -5,6 +5,7 @@
 #include "button.h"
 #include "dungeongraph.h"
 #include "dungeonmap.h"
+#include "player.h"
 
 class GameState {
 	// Game states -----------
@@ -37,6 +38,9 @@ class GameState {
 	DungeonGraph mygraph;
 	// DungeonMap initialization
 	DungeonMap my_map;
+	// Player Initialization
+	Player* player = nullptr;
+	bool player_initialized = false;
 	// Button Initialization
 	std::vector<Button> startButtons; // All buttons for the start menu
 	// we can add more buttons for other states of the game if we want :)
