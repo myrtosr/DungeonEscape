@@ -56,6 +56,11 @@ Passage* DungeonGraph::getPassageById(int id) {
     return passagesById[id];
 }
 
+std::vector<int> DungeonGraph::getShortestRoomPath(int startRoomId, int targetRoomId)
+{
+    // returns a vector of roomNode Ids we must pass through in order? 
+}
+
 // Constructor & Destructor
 DungeonGraph::DungeonGraph()
 {

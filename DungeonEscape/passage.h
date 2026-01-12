@@ -33,6 +33,9 @@ public:
 	
 	int getId() const { return id; }
 
+	int getRoomFromId() const { return roomFromId; }
+	int getRoomToId() const { return roomToId; }
+
 	// Unlocking a passage (weight changes from inf, that represents locked, to realWeight)
 	void unlockPassage() { weight = realWeight; }
 

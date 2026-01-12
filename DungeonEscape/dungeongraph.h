@@ -21,7 +21,10 @@ public:
 	void initializeGraphStructure();
 	RoomNode* getRoomById(int id);
 	Passage* getPassageById(int id);
-	
+
+	std::vector<int> getShortestRoomPath(int startRoomId, int targetRoomId); // Dijkstra
+
+	// Constructor & Destructor
 	DungeonGraph();
 	~DungeonGraph();
 };
