@@ -25,11 +25,12 @@ public:
 
 	void spawnAt(TileCoord tile, int start); // idk about this tbh
 
-	void setPath(const std::vector<TileCoord>& newPath);
-
 	// Getters
 	bool isMoving() const { return moving; }
 	TileCoord getPos() const { return pos; }
 	int getRoom() const { return currentRoomId; }
+
+	// Setters
 	void setRoom(int r) { currentRoomId = r; }
+	void setPath(const std::vector<TileCoord>& newPath);
 };
