@@ -59,6 +59,9 @@ public:
 	void setDebugMode(bool d) { debug = d; }
 	bool getDebugMode() const { return debug; }
 
+	DungeonMap& getDungeonMap() { return my_map; }
+	const DungeonMap& getDungeonMap() const { return my_map; }
+
 	// Constructor & Destructor 
 	GameState() : my_map(&mygraph) {};
 	~GameState();
