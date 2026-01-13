@@ -3,6 +3,7 @@
 #include "passage.h"
 #include <vector>
 #include <unordered_map>
+#include "config.h"
 
 
 class DungeonGraph {
@@ -22,7 +23,7 @@ public:
 	RoomNode* getRoomById(int id);
 	Passage* getPassageById(int id);
 
-	std::vector<int> getShortestRoomPath(int startRoomId, int targetRoomId); // Dijkstra
+	std::vector<int> getShortestRoomPath(int startRoomId, int targetRoomId); 
 
 	// Constructor & Destructor
 	DungeonGraph();

@@ -99,7 +99,7 @@ void GameState::updateQuitScreen()
 
 	float elapsed = graphics::getGlobalTime() - quitStartTime;
 
-	if (elapsed >= 2300.0f) { // show goodbye message for ~2 seconds
+	if (elapsed >= 2200.0f) { // show goodbye message for ~2 seconds
 	graphics::destroyWindow(); // close the SGG window
 	exit(0);                   // ensure program terminates
 	}

@@ -10,4 +10,5 @@
 #define TILE_SIZE 48
 #define GRID_WIDTH (CANVAS_WIDTH / TILE_SIZE)
 #define GRID_HEIGHT (CANVAS_HEIGHT / TILE_SIZE)
-
+// Defining our infinite logic
+#define INF 100000

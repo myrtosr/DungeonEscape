@@ -2,9 +2,10 @@
 #include "roomnode.h"
 #include "passage.h"
 #include "dungeongraph.h"
-#include <vector>;
+#include <vector>
 #include <unordered_map>
-
+#include "config.h"
+#include <algorithm>
 
 void DungeonGraph::addRoom(RoomNode* room)
 {
@@ -58,7 +59,94 @@ Passage* DungeonGraph::getPassageById(int id) {
 
 std::vector<int> DungeonGraph::getShortestRoomPath(int startRoomId, int targetRoomId)
 {
-    // returns a vector of roomNode Ids we must pass through in order? 
+    // Using Dijkstra to find shortest path from startRoom to targetRoom
+
+    // Info needed for Dijjkstra algorithm (mapping by roomIds)
+    std::unordered_map<int, int> distance;
+    std::unordered_map<int, int> previous;
+    std::unordered_map<int, bool> visited;
+
+    // Initialization of info for all rooms
+    for (RoomNode* r : rooms) {
+        int id = r->getId();
+        distance[id] = INF; // initiate all distances to infinite
+        previous[id] = -1; // no previous node
+        visited[id] = false; // initiate all rooms as unvisited
+    }
+
+    // Our roomIds start with 1 and ends at 8
+    distance[startRoomId] = 0; // distance of the first room = 0
+
+    // Main Loop
+    while (true) {
+        int currentRoomId = -1;
+        int smallestDistance = INF;
+
+        for (auto& pair : distance) {
+            int roomId = pair.first;
+            int dist = pair.second;
+            
+            if (!visited[roomId] && dist < smallestDistance) {
+                smallestDistance = dist;
+                currentRoomId = roomId;
+            }
+        }
+
+        // No reachable univisited rooms left -> stop
+        if (currentRoomId == -1)
+            break;
+
+        // Reach target room -> shortest path found
+        if (currentRoomId == targetRoomId)
+            break;
+
+        // Mark this room as Visited
+        visited[currentRoomId] = true;
+        
+        for (Passage* p : passages) {
+            // Relax all neighbouring rooms via passages 
+            int neighboorRoomId = -1; //?
+            if (p->getRoomFromId() == currentRoomId) {
+                neighboorRoomId = p->getRoomToId();
+            }
+            else if (p->getRoomToId() == currentRoomId) {
+                neighboorRoomId = p->getRoomFromId();
+            }
+            else {
+                continue;
+            }
+
+            if (visited[neighboorRoomId]) {
+                continue;
+            }
+
+            if (!p->isUnlocked(p->getWeight())) {
+                continue;
+            }
+
+            int newDistance = distance[currentRoomId] + p->getWeight();
+            if (newDistance < distance[neighboorRoomId]) {
+                distance[neighboorRoomId] = newDistance;
+                previous[neighboorRoomId] = currentRoomId;
+            }
+        }
+    }
+
+    // Constructing path : target -> start
+    std::vector<int> path;
+    int current = targetRoomId;
+
+    if (distance[current] >= INF) {
+        return path;
+    }
+    while (current != -1) {
+        path.push_back(current);
+        current = previous[current];
+    }
+    
+    std::reverse(path.begin(), path.end());
+    return path;
+
 }
 
 // Constructor & Destructor

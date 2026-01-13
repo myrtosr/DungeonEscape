@@ -5,7 +5,7 @@ void DungeonMap::buildViews()
     roomViews.clear();
     passageViews.clear();
 
-    // RoomViews Initialiasation
+    // RoomViews Initialization
     RoomNode* r1 = graph->getRoomById(1);
     roomViews.emplace_back(r1, TileCoord(5, 1), TileCoord(9, 5));
     roomViews[0].addEntrance({ 7,5 });

@@ -1,6 +1,6 @@
 #pragma once
 #include "roomnode.h"
-#include <limits>
+#include "config.h"
 
 
 class Passage {
@@ -10,7 +10,8 @@ class Passage {
 	int roomToId;
 
 	int realWeight; // real weight is set by the number of tiles of the passage
-	int weight = 1000;  // big enough that no path sum will reach it, but safe for avoiding overflow
+	const int infWeight = INF;
+	int weight = infWeight;  // big enough that no path sum will reach it, but safe for avoiding overflow
 	// bool accessible = false; (most propably remove this)
 
 public:
@@ -36,8 +37,9 @@ public:
 	int getRoomFromId() const { return roomFromId; }
 	int getRoomToId() const { return roomToId; }
 
-	// Unlocking a passage (weight changes from inf, that represents locked, to realWeight)
-	void unlockPassage() { weight = realWeight; }
+	// Unlock logic
+	bool isUnlocked(int w) { return w < infWeight; }
+	void unlockPassage() { weight = realWeight; } // unlocking a passage (weight changes: infWeight -> realWeight)
 
 	
 	
