@@ -96,16 +96,18 @@ std::vector<int> DungeonGraph::getShortestRoomPath(int startRoomId, int targetRo
         if (currentRoomId == -1)
             break;
 
+        // Mark this room as Visited
+        visited[currentRoomId] = true;
+
         // Reach target room -> shortest path found
         if (currentRoomId == targetRoomId)
             break;
 
-        // Mark this room as Visited
-        visited[currentRoomId] = true;
+;
         
         for (Passage* p : passages) {
             // Relax all neighbouring rooms via passages 
-            int neighboorRoomId = -1; //?
+            int neighboorRoomId = -1; 
             if (p->getRoomFromId() == currentRoomId) {
                 neighboorRoomId = p->getRoomToId();
             }
@@ -116,15 +118,22 @@ std::vector<int> DungeonGraph::getShortestRoomPath(int startRoomId, int targetRo
                 continue;
             }
 
+            // Don't touch already visited-finalized nodes
             if (visited[neighboorRoomId]) {
                 continue;
             }
-
+            
+            // Safety checks to prevent overflow
             if (!p->isUnlocked(p->getWeight())) {
                 continue;
             }
+            if (distance[currentRoomId] >= INF)
+                continue;
+            //------------------------
 
             int newDistance = distance[currentRoomId] + p->getWeight();
+
+            // If this path is cheaper than anything we knew before, update it
             if (newDistance < distance[neighboorRoomId]) {
                 distance[neighboorRoomId] = newDistance;
                 previous[neighboorRoomId] = currentRoomId;
@@ -132,7 +141,7 @@ std::vector<int> DungeonGraph::getShortestRoomPath(int startRoomId, int targetRo
         }
     }
 
-    // Constructing path : target -> start
+    // Constructing path using the previous map: target -> start
     std::vector<int> path;
     int current = targetRoomId;
 
@@ -144,6 +153,7 @@ std::vector<int> DungeonGraph::getShortestRoomPath(int startRoomId, int targetRo
         current = previous[current];
     }
     
+    // Return the path in correct order 
     std::reverse(path.begin(), path.end());
     return path;
 
