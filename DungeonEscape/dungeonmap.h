@@ -21,8 +21,8 @@ public:
 	};
 
 
-	 TileMap& getTileMap() { return tileMap; };
-	 const TileMap& getTileMap() const { return tileMap; }
+	TileMap& getTileMap() { return tileMap; };
+	const TileMap& getTileMap() const { return tileMap; }
 
 	// Initializing our setup
 	void buildViews(); // building RoomView / PassageView / DoorView

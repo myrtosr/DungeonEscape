@@ -5,7 +5,7 @@
 bool RoomView::contains(int r, int c)
 {
 	// Within floor tile bounds! Excluding walls
-	return r > topLeft.x && r < bottomRight.x && c > topLeft.y && c < bottomRight.y;
+	return r >= topLeft.x && r <= bottomRight.x && c >= topLeft.y && c <= bottomRight.y;
 }
 
 void RoomView::applyToTileMap(TileMap& map) {

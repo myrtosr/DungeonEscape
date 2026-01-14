@@ -34,6 +34,8 @@ void DungeonGraph::initializeGraphStructure() {
 
     // Connecting the DungeonGraph RoomNodes by constructing the Edges/Passages
     addPassage(new Passage(1, 1, 2, 3)); // adding weight manually since there's no door to set it (p1 is always open)
+    rooms[0]->setAvailable(true); // room 1 available
+    rooms[1]->setAvailable(true); // room 2 available
     addPassage(new Passage(2, 2, 3));
     addPassage(new Passage(3, 2, 4));
     addPassage(new Passage(4, 4, 5));
@@ -145,6 +147,7 @@ std::vector<int> DungeonGraph::getShortestRoomPath(int startRoomId, int targetRo
     std::vector<int> path;
     int current = targetRoomId;
 
+    // If target was never reached, return empty path
     if (distance[current] >= INF) {
         return path;
     }

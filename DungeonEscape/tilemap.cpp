@@ -1,6 +1,7 @@
 #include "tilemap.h"
 #include "config.h"
 #include "sgg/graphics.h"
+#include <queue>
 
 // Constructor of TileMap
 TileMap::TileMap()

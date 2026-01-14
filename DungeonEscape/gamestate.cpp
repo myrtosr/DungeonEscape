@@ -2,6 +2,7 @@
 #include "gamestate.h"
 #include "tilemap.h"
 #include "config.h"
+#include <iostream>
 
 void GameState::init() {
 	// Button Initialization
@@ -202,7 +203,10 @@ void GameState::handleDoorClick(int r, int c)
 
 void GameState::handleFloorClick(int r, int c)
 {
+	if (player->isMoving()) return;
+	std::cout << "[DEBUG] Handling floor click at: " << r << "," << c << std::endl;
 	RoomNode* room = my_map.getRoomAt(r, c);
+	std::cout << "[DEBUG] Room ID: " << room->getId() << (room->isAvailable() ? "true" : "false") << std::endl;
 	if (room && room->isAvailable()) {
 		// trigger pathfinding to tile {r, c}
 	}

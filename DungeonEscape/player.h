@@ -33,4 +33,5 @@ public:
 	// Setters
 	void setRoom(int r) { currentRoomId = r; }
 	void setPath(const std::vector<TileCoord>& newPath);
+	void setMoving(bool c) { moving = c; }
 };

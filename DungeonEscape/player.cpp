@@ -19,10 +19,16 @@ void Player::spawnAt(TileCoord tile, int start)
 	currentRoomId = start;
 }
 
+void Player::setPath(const std::vector<TileCoord>& newPath)
+{
+	path = newPath;
+	pathIndex = 0;
+}
+
 void Player::update()
 {
-	if (!moving)
-		return;
+    if(!moving) return;       // nothing to do if not moving
+
 }
 
 void Player::draw()

@@ -2,6 +2,7 @@
 #include <vector>
 #include "tile.h"
 #include "config.h"
+#include "util.h"
 
 class TileMap {
 	std::vector<Tile> tiles;
@@ -31,6 +32,7 @@ public:
 	void clearClicked() { clickedRow = clickedCol = -1; }
 	bool isClicked(int row, int col) const { return row == clickedRow && col == clickedCol; }
 	//------------------------
+	// Drawing stuff
 	void draw();
 	void drawGridDebug();
 };
