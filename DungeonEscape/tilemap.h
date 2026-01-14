@@ -32,6 +32,7 @@ public:
 	void clearClicked() { clickedRow = clickedCol = -1; }
 	bool isClicked(int row, int col) const { return row == clickedRow && col == clickedCol; }
 	//------------------------
+	std::vector<TileCoord> findTilePath(TileCoord start, TileCoord target);
 	// Drawing stuff
 	void draw();
 	void drawGridDebug();

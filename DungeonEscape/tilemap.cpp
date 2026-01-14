@@ -2,6 +2,7 @@
 #include "config.h"
 #include "sgg/graphics.h"
 #include <queue>
+#include <algorithm>
 
 // Constructor of TileMap
 TileMap::TileMap()
@@ -31,6 +32,90 @@ void TileMap::canvasToTile(float cx, float cy, int& row, int& col) const
 {
     row = int(cy / TILE_SIZE);
     col = int(cx / TILE_SIZE);
+}
+
+std::vector<TileCoord> TileMap::findTilePath(TileCoord start, TileCoord target)
+{
+    // The final tile-by-tile path will be stored in this vector
+    std::vector<TileCoord> path;
+
+    // Grid size
+    int rows = GRID_HEIGHT;
+    int cols = GRID_WIDTH;
+
+    // Info needed for BFS stored in 2D vectors
+    // visited
+    std::vector<std::vector<bool>> visited(
+        rows, std::vector<bool>(cols, false));
+    // previous 
+    std::vector<std::vector<TileCoord>> prev(
+        rows, std::vector<TileCoord>(cols, {-1,-1}));
+
+    // initialization of queue needed for BFS
+    std::queue<TileCoord> q;
+    q.push(start);
+    visited[start.x][start.y] = true;
+
+    // Movement directions
+    const int dx[4] = { -1, 1, 0, 0 };
+    const int dy[4] = { 0, 0, -1, 1 };
+
+    //Main loop
+    while (!q.empty()) {
+
+        TileCoord current = q.front();
+        q.pop();
+
+        // if reach target tile stop BFS algorithm
+        if (current.x == target.x && current.y == target.y) {
+            break;
+        }
+
+        // Exploring neighbouring tiles
+        for (int i = 0; i < 4; ++i) {
+            int nX = current.x + dx[i];
+            int nY = current.y + dy[i];
+
+            // boundary check
+            if (nX < 0 || nX >= rows || nY < 0 || nY >= cols) {
+                continue;
+            }
+
+            // tile-type check
+            Tile& tile = at(nX, nY);
+            if (tile.getType() != TileType::FLOOR && tile.getType() != TileType::PASSAGE) {
+                continue;
+            }
+
+            // Exclude already visited tiles
+            if (visited[nX][nY]) {
+                continue;
+            }
+
+            visited[nX][nY] = true;
+            prev[nX][nY] = current;
+            q.push({nX, nY});
+        }
+    }
+
+    // if target not visited return empty path
+    if (!visited[target.x][target.y]) {
+        return path;
+    }
+
+    // construct path: target -> start
+    TileCoord c = target;
+    while (!(c.x == start.x && c.y == start.y)) {
+        path.push_back(c);
+        c = prev[c.x][c.y];
+    }
+    path.push_back(start);
+
+    // Return the path in the right order: start -> target
+    std::reverse(path.begin(), path.end());
+
+    return path;
+
 }
 
 void TileMap::draw()
