@@ -34,6 +34,7 @@ void DungeonGraph::initializeGraphStructure() {
 
     // Connecting the DungeonGraph RoomNodes by constructing the Edges/Passages
     addPassage(new Passage(1, 1, 2, 3)); // adding weight manually since there's no door to set it (p1 is always open)
+    passages[0]->unlockPassage();
     rooms[0]->setAvailable(true); // room 1 available
     rooms[1]->setAvailable(true); // room 2 available
     addPassage(new Passage(2, 2, 3));

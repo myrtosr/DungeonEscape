@@ -135,7 +135,48 @@ RoomNode* DungeonMap::getRoomAt(int r, int c)
             return rv.getRoomNode();
         }
     }
-    return nullptr;
+    return nullptr; // !!! let's be careful with this
+}
+
+std::vector<TileCoord> DungeonMap::findFullPath(TileCoord startTile, TileCoord targetTile)
+{
+    // Vector to store and return the final tile path the player will follow tile-by-tile
+    std::vector<TileCoord> fullPath;
+
+    RoomNode* startRoom = getRoomAt(startTile.x, startTile.y);
+    RoomNode* targetRoom = getRoomAt(targetTile.x, targetTile.y);
+
+    if (!startRoom || !targetRoom)
+        return fullPath; // Returning empty path if one of the given tiles didn't translate to a room 
+
+    int startRoomId = startRoom->getId();
+    int targetRoomId = targetRoom->getId();
+
+    // 1. Movement inside room
+    // Both tiles translated to same roomId -> Movement inside a room
+    // Only call BFS to calculate shortest path from startTile -> targetTile
+    if (startRoomId == targetRoomId) {
+        return tileMap.findTilePath(startTile, targetTile);
+    }
+
+    // 2. Movement room2room
+    // Tiles belong to different rooms -> Movement room-to-room
+    // Call Dijkstra to find shortest room-to-room (node-to-node) path
+    // The path is given with a vector with roomIDs in the order we must traverse the rooms
+    std::vector<int> roomPath = graph->getShortestRoomPath(startRoomId, targetRoomId);
+
+    if (roomPath.empty())
+        return fullPath; // Returning empty path in case of Dijkstra failure
+
+    // The hard part: Building the tile path by connecting rooms via passages
+    // Logic:
+    // For each consecutive pair of rooms in roomPath:
+    // 1. Find which passage connects them
+    // 2. Find the room exit tile inside current room
+    // 3. Find the passage entrance tile (first/last depending on roomFrom/roomTo)
+    // 4. BFS from currentTile -> passage entrance
+    // 5. BFS along the passage
+    // 6. BFS from passage exit -> targetTile
 }
 
 

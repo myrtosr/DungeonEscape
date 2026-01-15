@@ -28,7 +28,19 @@ void Player::setPath(const std::vector<TileCoord>& newPath)
 void Player::update()
 {
     if(!moving) return;       // nothing to do if not moving
+	
+    if(!path.empty()) {
+        // Move one tile along the path
+        pos = path.front();   // teleport to next tile
+        path.erase(path.begin());     // remove tile from path
 
+        // Optional: you can add animation logic here instead of instant teleport
+        // Example: lerp from old position to new for smooth animation
+     }
+
+    if (path.empty()) {
+        moving = false;  // finished moving
+    }
 }
 
 void Player::draw()

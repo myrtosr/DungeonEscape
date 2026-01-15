@@ -23,6 +23,7 @@ public:
 	TileCoord getBottomRight() const { return bottomRight; }
 
 	void addEntrance(TileCoord e) { entrances.push_back(e); }
+	std::vector<TileCoord> getEntrances() const { return entrances; }
 
 	bool contains(int r, int c); // checks if a tile is within the floor(!) bounds of a room 
 

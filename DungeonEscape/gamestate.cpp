@@ -68,12 +68,12 @@ void GameState::updateLevelScreen()
 			if (t.isClickable()) {
 				tilemap.setClickedTile(row, col);  // for visual feedback
 				// Door tile is clicked
-				if (t.getType() == TileType::DOOR_LOCKED || t.getType() == TileType::DOOR_OPEN) {
+				if (t.getType() == TileType::DOOR_LOCKED) {
 					handleDoorClick(row, col);
 					return;
 				}
 				// Floor tile is clicked
-				if (t.getType() == TileType::FLOOR) {
+				if (t.getType() == TileType::FLOOR || t.getType() == TileType::DOOR_OPEN) {
 					handleFloorClick(row, col);
 					return;
 				}
@@ -206,9 +206,13 @@ void GameState::handleFloorClick(int r, int c)
 	if (player->isMoving()) return;
 	std::cout << "[DEBUG] Handling floor click at: " << r << "," << c << std::endl;
 	RoomNode* room = my_map.getRoomAt(r, c);
-	std::cout << "[DEBUG] Room ID: " << room->getId() << (room->isAvailable() ? "true" : "false") << std::endl;
+	std::cout << "[DEBUG] Room ID: " << room->getId() << " available:" << (room->isAvailable() ? "true" : "false") << std::endl;
 	if (room && room->isAvailable()) {
 		// trigger pathfinding to tile {r, c}
+		std::vector<TileCoord> path = my_map.findFullPath(player->getPos(), { r, c });
+		std::cout << "[DEBUG] Path length: " << path.size() << std::endl;
+		player->setPath(path);
+		player->setMoving(!path.empty());
 	}
 }
 

@@ -33,6 +33,8 @@ public:
 	Door* getDoorAt(int r, int c);
 	RoomNode* getRoomAt(int r, int c);
 
+	std::vector<TileCoord> findFullPath(TileCoord startTile, TileCoord targetTile);
+
 	// Runtime handling
 	void update();
 	void draw();
