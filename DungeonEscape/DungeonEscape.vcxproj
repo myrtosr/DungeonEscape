@@ -160,6 +160,7 @@
     <ClInclude Include="dungeonmap.h" />
     <ClInclude Include="gameobject.h" />
     <ClInclude Include="gamestate.h" />
+    <ClInclude Include="key.h" />
     <ClInclude Include="passage.h" />
     <ClInclude Include="passageview.h" />
     <ClInclude Include="player.h" />

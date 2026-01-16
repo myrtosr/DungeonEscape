@@ -6,7 +6,7 @@ class GameObject {
 protected:
 	const class GameState& gamestate;
 public:
-	GameObject(const class GameState& mygame);
+	GameObject(const class GameState& mygame) : gamestate(mygame) {};
 	virtual void update() = 0;
 	virtual void draw() = 0;
 	virtual void init() = 0;

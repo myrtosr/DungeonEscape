@@ -1,6 +1,7 @@
 #pragma once
 #include "util.h"
 #include "gameobject.h"
+#include "key.h"
 #include <vector>
 
 class RoomNode;
@@ -14,6 +15,7 @@ class Player : public GameObject {
 	int pathIndex = 0;
 	bool moving;
 	float speed;
+	std::vector<int> keyInventory;
 public:
 	// Constructor & Destructor
 	Player(const class GameState& mygame);
@@ -34,4 +36,8 @@ public:
 	void setRoom(int r) { currentRoomId = r; }
 	void setPath(const std::vector<TileCoord>& newPath);
 	void setMoving(bool c) { moving = c; }
+
+	// Inventory handling
+	void addKey(int id) { keyInventory.push_back(id); }
+	bool hasKey(int id) { return std::find(keyInventory.begin(), keyInventory.end(), id) != keyInventory.end(); }
 };
