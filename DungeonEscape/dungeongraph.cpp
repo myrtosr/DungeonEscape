@@ -163,6 +163,24 @@ std::vector<int> DungeonGraph::getShortestRoomPath(int startRoomId, int targetRo
 
 }
 
+void DungeonGraph::clear()
+{
+    // Delete rooms
+    for (RoomNode* r : rooms) {
+        delete r;
+    }
+    rooms.clear();
+    roomsById.clear();
+
+    // Delete edges / passages
+    for (Passage* p : passages) {
+        delete p;
+    }
+    passages.clear();
+    passagesById.clear();
+
+}
+
 // Constructor & Destructor
 DungeonGraph::DungeonGraph()
 {
@@ -171,9 +189,5 @@ DungeonGraph::DungeonGraph()
 // Deleting dynamically created objects
 DungeonGraph::~DungeonGraph()
 {
-    for (auto r : rooms) delete r;
-    for (auto p : passages) delete p;
+    clear();
 }
-
-//pathfind method
-//updateWeight() 

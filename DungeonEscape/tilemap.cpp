@@ -163,19 +163,22 @@ void TileMap::draw()
             br.fill_color[2] = 46 / 255.0f;  
             break;
         }
-
+        
+        // Visual feedback for hover and click
         if (isHovered(t.getX(), t.getY())) {
+            // 53, 37, 108
             br.outline_opacity = 1.0f;
-            br.outline_color[0] = 0.3f;
-            br.outline_color[1] = 0.0f;
-            br.outline_color[2] = 0.3f;
+            br.outline_color[0] = 53 / 255.0f;
+            br.outline_color[1] = 37 / 255.0f;
+            br.outline_color[2] = 108 / 255.0f;
             br.outline_width = 3.0f;
         }
 
         if (isClicked(t.getX(), t.getY())) {
-            br.fill_color[0] = 0.3f;
-            br.fill_color[1] = 0.0f;
-            br.fill_color[2] = 0.3f;
+
+            br.fill_color[0] = 186 / 255.0f;
+            br.fill_color[1] = 180 / 255.0f;
+            br.fill_color[2] = 221 / 255.0f;
         }
 
         graphics::drawRect(cx, cy, TILE_SIZE, TILE_SIZE, br);

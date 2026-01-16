@@ -177,6 +177,8 @@ std::vector<TileCoord> DungeonMap::findFullPath(TileCoord startTile, TileCoord t
     // 4. BFS from currentTile -> passage entrance
     // 5. BFS along the passage
     // 6. BFS from passage exit -> targetTile
+
+
 }
 
 

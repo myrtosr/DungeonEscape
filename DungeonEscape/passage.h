@@ -16,7 +16,7 @@ class Passage {
 
 public:
 
-	// Constructors
+	// Constructors & Destructor
 	Passage(int id, int from, int to)
 		: id(id), roomFromId(from), roomToId(to) {
 	};

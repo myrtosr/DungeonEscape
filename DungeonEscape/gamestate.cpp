@@ -23,7 +23,15 @@ void GameState::init() {
 		"quit.png"
 		});
 
-	// I want to add an "about button" but how do I make a pop-up on a current game state? And do I have to make another button to close it? :(
+	// End Screen Buttons
+	endButtons.push_back({
+		CANVAS_WIDTH / 2,
+		CANVAS_HEIGHT / 2 + 168,
+		170,
+		60,
+		"exit.png"
+		});
+
 	// Dungeon Initialization
 	mygraph.initializeGraphStructure();
 
@@ -47,7 +55,7 @@ void GameState::updateStartScreen()
 				status = STATUS_PLAYING;
 			}
 			else if (b.getTexture() == "quit.png") {
-				status = STATUS_QUIT;
+				status = STATUS_END;
 			}
 		}
 	}
@@ -89,6 +97,29 @@ void GameState::updateLevelScreen()
 
 void GameState::updateEndScreen()
 {
+	
+	// We need to make views dynamically allocated as well.
+	// Cause if we simply delete graph logic the pointers the view objects have become dangling. 
+	// So frist delete views, then delete graph entities... we need none of them for the exit screen
+	//mygraph.clear();
+	//mymap.clear();
+
+	if (!endInitialized) {
+		graphics::playMusic(std::string(ASSET_PATH) + "victory.mp3", 0.6f, false);
+		endInitialized = true;
+	}
+
+	for (auto& b : endButtons) {
+		b.updateHover(cx, cy);
+
+		if (b.isClicked(mouse.button_left_released)) {
+			if (b.getTexture() == "exit.png") {
+				graphics::stopMusic();
+				status = STATUS_QUIT;
+			}
+		}
+	}
+
 }
 
 void GameState::updateQuitScreen()
@@ -100,7 +131,7 @@ void GameState::updateQuitScreen()
 
 	float elapsed = graphics::getGlobalTime() - quitStartTime;
 
-	if (elapsed >= 2200.0f) { // show goodbye message for ~2 seconds
+	if (elapsed >= 2100.0f) { // show goodbye message for ~2 seconds
 	graphics::destroyWindow(); // close the SGG window
 	exit(0);                   // ensure program terminates
 	}
@@ -151,6 +182,45 @@ void GameState::drawLevelScreen()
 
 void GameState::drawEndScreen()
 {
+	graphics::Brush br;
+	br.outline_opacity = 0.0f;
+
+	// Background
+	//br.fill_color[0] = 69 / 255.0f;   // R
+	//br.fill_color[1] = 72 / 255.0f;  // G
+	//br.fill_color[2] = 147 / 255.0f;  // B
+	br.texture = std::string(ASSET_PATH) + "background.png";
+	graphics::drawRect(CANVAS_WIDTH / 2, CANVAS_HEIGHT / 2, CANVAS_WIDTH, CANVAS_HEIGHT, br);
+
+	// Icon
+	
+	br.fill_color[0] = 1.0f; // reset
+	br.fill_color[1] = 1.0f;
+	br.fill_color[2] = 1.0f;
+	br.texture = std::string(ASSET_PATH) + "win.png";
+	graphics::drawRect(CANVAS_WIDTH / 2, CANVAS_HEIGHT / 2, 240, 240, br);
+
+	// Buttons
+	for (auto& b : endButtons) {
+		b.draw();
+	}
+
+	// Successful Escape Message
+	graphics::setFont(std::string(ASSET_PATH) + "simple_font.ttf");
+	br.texture = "";
+	float t = graphics::getGlobalTime() / 1000;	
+	
+	float floatOffset = sin(t * 2.0f) * 10.0f;
+
+	char floatingText[100];
+	sprintf_s(floatingText, "Escape Success!");
+
+	graphics::drawText(
+		CANVAS_WIDTH / 2 - 200,       
+		CANVAS_HEIGHT / 2 - 150 + floatOffset,
+		60,                        
+		floatingText,
+		br);
 }
 
 void GameState::drawQuitScreen()
@@ -159,9 +229,9 @@ void GameState::drawQuitScreen()
 	br.outline_opacity = 0.0f;
 
 	// Background
-	br.fill_color[0] = 75 / 255.0f;   // R
-	br.fill_color[1] = 59 / 255.0f;  // G
-	br.fill_color[2] = 131 / 255.0f;  // B
+	br.fill_color[0] = 69 / 255.0f;   // R
+	br.fill_color[1] = 72 / 255.0f;  // G
+	br.fill_color[2] = 147 / 255.0f;  // B
 	graphics::drawRect(CANVAS_WIDTH / 2, CANVAS_HEIGHT / 2, CANVAS_WIDTH, CANVAS_HEIGHT, br);
 
 	// Goodbye text
@@ -187,6 +257,7 @@ void GameState::updateMouseCanvasCoords()
 
 void GameState::handleDoorClick(int r, int c)
 {
+	std::cout << "[DEBUG] Handling door click at: " << r << "," << c << std::endl;
 	Door* door = my_map.getDoorAt(r, c);
 	if (door) {
 		if (door->isUnlocked()) {

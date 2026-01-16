@@ -25,6 +25,7 @@ public:
 
 	std::vector<int> getShortestRoomPath(int startRoomId, int targetRoomId); 
 
+	void clear();
 	// Constructor & Destructor
 	DungeonGraph();
 	~DungeonGraph();

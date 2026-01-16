@@ -45,6 +45,7 @@ class GameState {
 	bool player_initialized = false;
 	// Button Initialization
 	std::vector<Button> startButtons; // All buttons for the start menu
+	std::vector<Button> endButtons; // All buttons for the end screen
 	// we can add more buttons for other states of the game if we want :)
 	// Handling message outputs with time for end & quit screen
 	bool quitting = false;        // quit screen sequence starts
@@ -53,6 +54,7 @@ class GameState {
 	bool ending = false;          // true when exit screen sequence starts
 	float endStartTime = -1.0f;   // global time when end screen started
 	//------------------------
+	bool endInitialized = false;
 	bool debug = false;
 public:
 	void update();

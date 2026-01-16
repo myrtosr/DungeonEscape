@@ -8,7 +8,7 @@ class RoomNode {
 
 public:
 
-	// Constructor
+	// Constructor & Destructor
 	RoomNode(int id_) : id(id_) {};
 
 	// Getters
