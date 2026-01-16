@@ -116,7 +116,7 @@ void DungeonMap::initializeTiles()
     // Passages
     for (PassageView& ps : passageViews)
         ps.applyToTileMap(tileMap);
-    initializeDoorTiles();
+    //initializeDoorTiles();
 }
 
 Door* DungeonMap::getDoorAt(int r, int c)
@@ -137,6 +137,16 @@ Key* DungeonMap::getKeyAt(int r, int c)
     return nullptr;
 }
 
+void DungeonMap::removeKey(Key* key)
+{
+    auto it = std::find(keys.begin(), keys.end(), key);
+    
+    if (it != keys.end()) {
+        delete *it; // Delete the key object
+        keys.erase(it); // Free the corresponding space in keys vector
+    }   
+}
+
 RoomNode* DungeonMap::getRoomAt(int r, int c)
 {
     for (RoomView& rv : roomViews) {
@@ -144,7 +154,7 @@ RoomNode* DungeonMap::getRoomAt(int r, int c)
             return rv.getRoomNode();
         }
     }
-    return nullptr; // !!! let's be careful with this
+    return nullptr; 
 }
 
 std::vector<TileCoord> DungeonMap::findFullPath(TileCoord startTile, TileCoord targetTile)
@@ -212,6 +222,7 @@ void DungeonMap::draw()
 
 void DungeonMap::init()
 {
-
+    initializeTiles();
+    initializeDoorTiles();
 }
 

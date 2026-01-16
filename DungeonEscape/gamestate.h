@@ -31,6 +31,7 @@ class GameState {
 	void updateMouseCanvasCoords();
 	//------------------------
 	// Handling mouse click events 
+	bool handleKeyClick(int r, int c);
 	void handleDoorClick(int r, int c);
 	void handleFloorClick(int r, int c);
 	//------------------------

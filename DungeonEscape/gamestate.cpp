@@ -37,7 +37,7 @@ void GameState::init() {
 
 	// Grid and Views Initialization
 	my_map.buildViews();
-	my_map.initializeTiles();
+	my_map.init();
 
 	// Player Initialization
 	player = new Player(*this);
@@ -70,8 +70,12 @@ void GameState::updateLevelScreen()
 	if (inside_canvas) {
 		tilemap.canvasToTile(cx, cy, row, col);
 		tilemap.setHoveredTile(row, col); // for visual feedback
-
 		if (mouse.button_left_released) {
+
+			if (handleKeyClick(row, col)) {
+				return;
+			}
+
 			Tile& t = tilemap.at(row, col);
 			if (t.isClickable()) {
 				tilemap.setClickedTile(row, col);  // for visual feedback
@@ -256,16 +260,25 @@ void GameState::updateMouseCanvasCoords()
 		cy >= 0 && cy <= CANVAS_HEIGHT;
 }
 
-/*
-void GameState::handleKeyClick(int r, int c)
+
+bool GameState::handleKeyClick(int r, int c)
 {
 	Key* key = my_map.getKeyAt(r, c);
-	if (!key) return;
+	if (!key) return false; // key doesn't exist in this click -> key click not handled
 
-	player->addKey(key->getId());
-	my_map.removeKey(key);
+	RoomNode* room = my_map.getRoomAt(r, c);
+	if (!room || !room->isAvailable()) {
+		std::cout << "[DEBUG] Cannot handle key click in unavailable room" << std::endl;
+		return false; // key exists in unavailable room -> key click not handled
+	}
+
+	std::cout << "[DEBUG] Handling key click at: " << r << "," << c << std::endl;
+
+	player->addKey(key->getId()); // update player inventory
+	my_map.removeKey(key); 
+	return true;
 }
-*/
+
 
 void GameState::handleDoorClick(int r, int c)
 {

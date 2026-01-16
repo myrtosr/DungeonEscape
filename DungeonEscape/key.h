@@ -7,8 +7,8 @@ class Key : public GameObject {
 
 public:
 	// Constructor & Destructor
-	Key(const class GameState& mygame, int id, TileCoord p) : GameObject(mygame), id(id), pos(p) {};
-	~Key();
+	Key(const class GameState& mygame, int id, TileCoord p) : GameObject(mygame), id(id), pos(p) {}
+	~Key() = default;
 
 	int getRow() const { return pos.x; }
 	int getCol() const { return pos.y; }

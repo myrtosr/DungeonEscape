@@ -35,6 +35,7 @@ public:
 	Door* getDoorAt(int r, int c);
 	RoomNode* getRoomAt(int r, int c);
 	Key* getKeyAt(int r, int c);
+	void removeKey(Key* key);
 
 	std::vector<TileCoord> findFullPath(TileCoord startTile, TileCoord targetTile);
 
