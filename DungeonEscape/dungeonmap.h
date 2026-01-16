@@ -6,6 +6,7 @@
 #include "door.h"
 #include <vector>
 #include "dungeongraph.h"
+#include "key.h"
 
 class DungeonMap { 
 	TileMap tileMap;
@@ -14,6 +15,7 @@ class DungeonMap {
 	std::vector<RoomView> roomViews;
 	std::vector<PassageView> passageViews;
 	std::vector<Door*> doors;
+	std::vector<Key*> keys;
 	
 public:
 	DungeonMap(DungeonGraph* graph)
@@ -32,6 +34,7 @@ public:
 
 	Door* getDoorAt(int r, int c);
 	RoomNode* getRoomAt(int r, int c);
+	Key* getKeyAt(int r, int c);
 
 	std::vector<TileCoord> findFullPath(TileCoord startTile, TileCoord targetTile);
 

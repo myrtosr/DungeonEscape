@@ -128,6 +128,15 @@ Door* DungeonMap::getDoorAt(int r, int c)
     return nullptr;
 }
 
+Key* DungeonMap::getKeyAt(int r, int c)
+{
+    for (Key* k : keys) {
+        if (k->getRow() == r && k->getCol() == c)
+            return k;
+    }
+    return nullptr;
+}
+
 RoomNode* DungeonMap::getRoomAt(int r, int c)
 {
     for (RoomView& rv : roomViews) {

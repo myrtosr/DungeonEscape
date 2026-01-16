@@ -256,6 +256,17 @@ void GameState::updateMouseCanvasCoords()
 		cy >= 0 && cy <= CANVAS_HEIGHT;
 }
 
+/*
+void GameState::handleKeyClick(int r, int c)
+{
+	Key* key = my_map.getKeyAt(r, c);
+	if (!key) return;
+
+	player->addKey(key->getId());
+	my_map.removeKey(key);
+}
+*/
+
 void GameState::handleDoorClick(int r, int c)
 {
 	std::cout << "[DEBUG] Handling door click at: " << r << "," << c << std::endl;
@@ -268,7 +279,7 @@ void GameState::handleDoorClick(int r, int c)
 			door->unlock(); 
 		}
 		else {
-			show message "Door is locked! You need a key..."q
+			show message "Door is locked! You need a key..."
 		}*/
 	}
 }
