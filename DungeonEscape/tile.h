@@ -11,8 +11,11 @@ enum class TileType {
 	WALL_TR,
 	WALL_BL,
 	WALL_BR,
-	DOOR_LOCKED,
-	DOOR_OPEN,
+	DOOR_LOCKED, // REMOVE
+	DOOR_T,
+	DOOR_L,
+	DOOR_R,
+	DOOR_OPEN, // REMOVE
 	PASSAGE
 };
 

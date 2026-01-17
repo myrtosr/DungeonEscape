@@ -65,6 +65,12 @@ void GameState::updateStartScreen()
 
 void GameState::updateLevelScreen()
 {
+
+	if (!levelInitialized) {
+		graphics::playMusic(std::string(ASSET_PATH) + "main.mp3", 0.2f, 5.0f );
+		levelInitialized = true;
+	}
+
 	TileMap& tilemap = my_map.getTileMap();
 	tilemap.clearHover();
 
@@ -82,7 +88,7 @@ void GameState::updateLevelScreen()
 			if (t.isClickable()) {
 				tilemap.setClickedTile(row, col);  // for visual feedback
 				// Door tile is clicked
-				if (t.getType() == TileType::DOOR_LOCKED) {
+				if (t.getType() == TileType::DOOR_T || t.getType() == TileType::DOOR_L || t.getType() == TileType::DOOR_R) {
 					handleDoorClick(row, col);
 					return;
 				}
@@ -101,23 +107,21 @@ void GameState::updateLevelScreen()
 	player->update();
 
 	// Game Victory
-	if ((player->getPos().x == 13) && (player->getPos().y == 32)) status = STATUS_END;
+	if ((player->getPos().x == 13) && (player->getPos().y == 32)) {
+		status = STATUS_END;
+		graphics::stopMusic();
+	}
 }
 
 void GameState::updateEndScreen()
 {
-	
-	// We need to make views dynamically allocated as well.
-	// Cause if we simply delete graph logic the pointers the view objects have become dangling. 
-	// So frist delete views, then delete graph entities... we need none of them for the exit screen
-	
-	
 
 	if (!endInitialized) {
 		graphics::playMusic(std::string(ASSET_PATH) + "victory.mp3", 0.6f, false);
-		// all other deletes (player...)
 		my_map.clear();
 		mygraph.clear();
+		std::cout << "[DEBUG] Deleting player" << std::endl;
+		delete player;
 		endInitialized = true;
 	}
 
@@ -201,15 +205,10 @@ void GameState::drawEndScreen()
 	graphics::Brush br;
 	br.outline_opacity = 0.0f;
 
-	// Background
-	//br.fill_color[0] = 69 / 255.0f;   // R
-	//br.fill_color[1] = 72 / 255.0f;  // G
-	//br.fill_color[2] = 147 / 255.0f;  // B
 	br.texture = std::string(ASSET_PATH) + "background.png";
 	graphics::drawRect(CANVAS_WIDTH / 2, CANVAS_HEIGHT / 2, CANVAS_WIDTH, CANVAS_HEIGHT, br);
 
 	// Icon
-	
 	br.fill_color[0] = 1.0f; // reset
 	br.fill_color[1] = 1.0f;
 	br.fill_color[2] = 1.0f;
@@ -425,13 +424,13 @@ void GameState::removeKey(Key* key)
 
 void GameState::initializeKeys()
 {
-	keys.push_back(new Key(*this, 3, {6, 10}));
-	keys.push_back(new Key(*this, 4, {8, 2}));
-	keys.push_back(new Key(*this, 5, {17, 11}));
-	keys.push_back(new Key(*this, 7, {16, 2}));
-	keys.push_back(new Key(*this, 6, {14, 25}));
-	keys.push_back(new Key(*this, 2, {6, 24}));
-	keys.push_back(new Key(*this, 8, {2, 17}));
+	keys.push_back(new Key(*this, 3, {9, 24}, "key3.png"));
+	keys.push_back(new Key(*this, 4, {8, 2}, "key4.png"));
+	keys.push_back(new Key(*this, 5, {17, 11}, "key5.png"));
+	keys.push_back(new Key(*this, 7, {16, 2}, "key7.png"));
+	keys.push_back(new Key(*this, 6, {14, 25}, "key6.png"));
+	keys.push_back(new Key(*this, 2, {6, 24}, "key2.png"));
+	keys.push_back(new Key(*this, 8, {2, 17}, "key8.png"));
 }
 
 GameState::~GameState()

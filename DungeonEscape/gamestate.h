@@ -58,6 +58,7 @@ class GameState {
 	float endStartTime = -1.0f;   // global time when end screen started
 	//------------------------
 	bool endInitialized = false;
+	bool levelInitialized = false;
 	bool debug = false;
 public:
 	void update();

@@ -143,17 +143,10 @@ void TileMap::draw()
         case TileType::WALL_BL: br.texture = std::string(ASSET_PATH) + "BL.png"; break;
         case TileType::WALL_BR: br.texture = std::string(ASSET_PATH) + "BR.png"; break;
            
-        case TileType::DOOR_LOCKED:
-            br.fill_color[0] = 245 / 255.0f;
-            br.fill_color[1] = 78 / 255.0f;
-            br.fill_color[2] = 187 / 255.0f;
-            break;
+        case TileType::DOOR_T: br.texture = std::string(ASSET_PATH) + "DOOR_T.png"; break;
+        case TileType::DOOR_L: br.texture = std::string(ASSET_PATH) + "DOOR_L.png"; break;
+        case TileType::DOOR_R: br.texture = std::string(ASSET_PATH) + "DOOR_R.png"; break;
         
-        case TileType::DOOR_OPEN:
-            br.fill_color[0] = 130 / 255.0f;
-            br.fill_color[1] = 118 / 255.0f;
-            br.fill_color[2] = 245 / 255.0f;
-            break;
 
         case TileType::PASSAGE: br.texture = std::string(ASSET_PATH) + "FLOOR.png"; break;
       

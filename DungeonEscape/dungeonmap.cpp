@@ -149,12 +149,40 @@ void DungeonMap::buildViews()
 
 void DungeonMap::initializeDoorTiles()
 {
-    for (Door* d : doors) {
+    Tile& t3 = tileMap.at(doors[0]->getRow(), doors[0]->getCol());
+    t3.setType(doors[0]->isUnlocked() ? TileType::FLOOR  : TileType::DOOR_L);
+    t3.setClickable(true);
+    
+    Tile& t4 = tileMap.at(doors[1]->getRow(), doors[1]->getCol());
+    t4.setType(doors[1]->isUnlocked() ? TileType::FLOOR : TileType::DOOR_T);
+    t4.setClickable(true);
+
+    Tile& t5 = tileMap.at(doors[2]->getRow(), doors[2]->getCol());
+    t5.setType(doors[2]->isUnlocked() ? TileType::FLOOR : TileType::DOOR_R);
+    t5.setClickable(true);
+
+    Tile& t6 = tileMap.at(doors[3]->getRow(), doors[3]->getCol());
+    t6.setType(doors[3]->isUnlocked() ? TileType::FLOOR : TileType::DOOR_L);
+    t6.setClickable(true);
+
+    Tile& t7 = tileMap.at(doors[4]->getRow(), doors[4]->getCol());
+    t7.setType(doors[4]->isUnlocked() ? TileType::FLOOR : TileType::DOOR_L);
+    t7.setClickable(true);
+
+    Tile& t8 = tileMap.at(doors[5]->getRow(), doors[5]->getCol());
+    t8.setType(doors[5]->isUnlocked() ? TileType::FLOOR : TileType::DOOR_L);
+    t8.setClickable(true);
+
+    Tile& t2 = tileMap.at(doors[6]->getRow(), doors[6]->getCol());
+    t2.setType(doors[6]->isUnlocked() ? TileType::FLOOR : TileType::DOOR_R);
+    t2.setClickable(true);
+    /*for (Door* d : doors) {
         Tile& t = tileMap.at(d->getRow(), d->getCol());
         t.setType(d->isUnlocked() ? TileType::DOOR_OPEN
             : TileType::DOOR_LOCKED);
         t.setClickable(true);
     }
+    */
 }
 
 void DungeonMap::initializeTiles()
