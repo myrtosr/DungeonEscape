@@ -44,6 +44,8 @@ class GameState {
 	// Player Initialization
 	Player* player = nullptr;
 	bool player_initialized = false;
+	//------------------------
+	std::vector<Key*> keys;
 	// Button Initialization
 	std::vector<Button> startButtons; // All buttons for the start menu
 	std::vector<Button> endButtons; // All buttons for the end screen
@@ -73,6 +75,10 @@ public:
 
 	DungeonMap& getDungeonMap() { return my_map; }
 	const DungeonMap& getDungeonMap() const { return my_map; }
+
+	Key* getKeyAt(int r, int c);
+	void removeKey(Key* key);
+	void initializeKeys();
 
 	// Constructor & Destructor 
 	GameState() : my_map(&mygraph) {};

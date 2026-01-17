@@ -1,5 +1,6 @@
 #pragma once
 #include "gameobject.h"
+#include "util.h"
 
 class Key : public GameObject {
 	int id;
@@ -13,9 +14,9 @@ public:
 	int getRow() const { return pos.x; }
 	int getCol() const { return pos.y; }
 
-	void update();
-	void draw();
-	void init();
+	void update() override;
+	void draw() override;
+	void init() override;
 
 	int getId() const { return id; }
 

@@ -39,6 +39,8 @@ void GameState::init() {
 	my_map.buildViews();
 	my_map.init();
 
+	initializeKeys();
+
 	// Player Initialization
 	player = new Player(*this);
 	player->init();
@@ -175,6 +177,10 @@ void GameState::drawLevelScreen()
 	
 	my_map.draw();
 
+	for (auto& k : keys) {
+		k->draw();
+	}
+
 	player->draw();
 
 	if (debug) {
@@ -263,7 +269,7 @@ void GameState::updateMouseCanvasCoords()
 
 bool GameState::handleKeyClick(int r, int c)
 {
-	Key* key = my_map.getKeyAt(r, c);
+	Key* key = getKeyAt(r, c);
 	if (!key) return false; // key doesn't exist in this click -> key click not handled
 
 	RoomNode* room = my_map.getRoomAt(r, c);
@@ -275,7 +281,7 @@ bool GameState::handleKeyClick(int r, int c)
 	std::cout << "[DEBUG] Handling key click at: " << r << "," << c << std::endl;
 
 	player->addKey(key->getId()); // update player inventory
-	my_map.removeKey(key); 
+	removeKey(key); 
 	return true;
 }
 
@@ -288,12 +294,21 @@ void GameState::handleDoorClick(int r, int c)
 		if (door->isUnlocked()) {
 			return; // door already unlocked -> nothing happens
 		}
-		/* else if (player has the key in inventory)
+
+		if (player->hasKey(door->getId())) {
 			door->unlock(); 
+			std::vector<RoomView>& rooms = my_map.getRoomViews();
+
+			for (RoomView& rv : rooms) {
+				if (rv.getRoomNode()->getId() == door->getId()) {
+					rv.addEntrance({ r, c });
+					break;
+				}
+			}
 		}
 		else {
-			show message "Door is locked! You need a key..."
-		}*/
+			std::cout << "[DEBUG] Required key not found!" << std::endl;
+		}
 	}
 }
 
@@ -382,6 +397,36 @@ void GameState::onWindowResized(unsigned int w, unsigned int h)
 {
 	setWindowDimensions(w, h);
 	updateMouseCanvasCoords();
+}
+
+Key* GameState::getKeyAt(int r, int c)
+{
+	for (Key* k : keys) {
+		if (k->getRow() == r && k->getCol() == c)
+			return k;
+	}
+	return nullptr;
+}
+
+void GameState::removeKey(Key* key)
+{
+	auto it = std::find(keys.begin(), keys.end(), key);
+
+	if (it != keys.end()) {
+		delete* it; // Delete the key object
+		keys.erase(it); // Free the corresponding space in keys vector
+	}
+}
+
+void GameState::initializeKeys()
+{
+	keys.push_back(new Key(*this, 3, {6, 10}));
+	keys.push_back(new Key(*this, 4, {8, 2}));
+	keys.push_back(new Key(*this, 5, {17, 11}));
+	keys.push_back(new Key(*this, 7, {16, 2}));
+	keys.push_back(new Key(*this, 6, {14, 25}));
+	keys.push_back(new Key(*this, 2, {6, 24}));
+	keys.push_back(new Key(*this, 8, {2, 17}));
 }
 
 GameState::~GameState()

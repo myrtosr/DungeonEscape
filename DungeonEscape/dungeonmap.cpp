@@ -128,25 +128,6 @@ Door* DungeonMap::getDoorAt(int r, int c)
     return nullptr;
 }
 
-Key* DungeonMap::getKeyAt(int r, int c)
-{
-    for (Key* k : keys) {
-        if (k->getRow() == r && k->getCol() == c)
-            return k;
-    }
-    return nullptr;
-}
-
-void DungeonMap::removeKey(Key* key)
-{
-    auto it = std::find(keys.begin(), keys.end(), key);
-    
-    if (it != keys.end()) {
-        delete *it; // Delete the key object
-        keys.erase(it); // Free the corresponding space in keys vector
-    }   
-}
-
 RoomNode* DungeonMap::getRoomAt(int r, int c)
 {
     for (RoomView& rv : roomViews) {
@@ -156,6 +137,13 @@ RoomNode* DungeonMap::getRoomAt(int r, int c)
     }
     return nullptr; 
 }
+
+std::vector<RoomView>& DungeonMap::getRoomViews()
+{
+    return roomViews;
+}
+
+
 
 std::vector<TileCoord> DungeonMap::findFullPath(TileCoord startTile, TileCoord targetTile)
 {
@@ -208,7 +196,7 @@ void DungeonMap::update()
         Tile& t = tileMap.at(door->getRow(), door->getCol());
 
         if (door->isUnlocked())
-            t.setType(TileType::DOOR_OPEN);
+            t.setType(TileType::FLOOR);
     }
 }
 
