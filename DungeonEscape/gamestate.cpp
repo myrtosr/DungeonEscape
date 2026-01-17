@@ -296,7 +296,7 @@ void GameState::handleDoorClick(int r, int c)
 		}
 
 		if (player->hasKey(door->getId())) {
-			door->unlock(); 
+			door->unlock(mygraph); 
 			std::vector<RoomView>& rooms = my_map.getRoomViews();
 
 			for (RoomView& rv : rooms) {

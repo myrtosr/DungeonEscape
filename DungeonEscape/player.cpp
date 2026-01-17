@@ -41,6 +41,8 @@ void Player::update()
     if (path.empty()) {
         moving = false;  // finished moving
     }
+
+    // if position == ending tile {13,32} (entrance[7]) -> go to Exit State
 }
 
 void Player::draw()

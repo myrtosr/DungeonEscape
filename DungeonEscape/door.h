@@ -2,6 +2,7 @@
 #include <vector>
 #include "util.h"
 #include "passage.h"
+#include "dungeongraph.h"
 
 class Door {
 	int id; // I'll set ids based on the room the door belongs to ;)
@@ -26,6 +27,5 @@ public:
 	// Passage Connection
 	void addPassage(Passage* p);
 
-	void unlock();
-	// to do 1
+	void unlock(DungeonGraph& mygraph);
 };

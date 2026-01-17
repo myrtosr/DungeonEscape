@@ -39,7 +39,7 @@ void DungeonMap::buildViews()
 
     RoomNode* r8 = graph->getRoomById(8);
     roomViews.emplace_back(r8, TileCoord(13, 30), TileCoord(18, 33));
-    // no entrances, only door
+    roomViews[7].addEntrance({ 13, 32 });
 
     // Passage Initialization
     Passage* p1 = graph->getPassageById(1);

@@ -23,7 +23,9 @@ public:
 	RoomNode* getRoomById(int id);
 	Passage* getPassageById(int id);
 
-	std::vector<int> getShortestRoomPath(int startRoomId, int targetRoomId); 
+	void unlockRoomsFromPassage(Passage* p);
+
+	std::vector<int> getShortestRoomPath(int startRoomId, int targetRoomId);
 
 	void clear();
 	// Constructor & Destructor

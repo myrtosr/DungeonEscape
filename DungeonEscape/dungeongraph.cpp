@@ -6,6 +6,7 @@
 #include <unordered_map>
 #include "config.h"
 #include <algorithm>
+#include <iostream>
 
 void DungeonGraph::addRoom(RoomNode* room)
 {
@@ -58,6 +59,24 @@ RoomNode* DungeonGraph::getRoomById(int id)
 
 Passage* DungeonGraph::getPassageById(int id) {
     return passagesById[id];
+}
+
+void DungeonGraph::unlockRoomsFromPassage(Passage* p)
+{
+    if (!p || !p->isUnlocked(p->getWeight()))
+        return;
+
+    RoomNode* fromR = getRoomById(p->getRoomFromId());
+    RoomNode* toR = getRoomById(p->getRoomToId());
+    if (fromR && !fromR->isAvailable()){
+        fromR->setAvailable(true);
+        std::cout << "[DEBUG] Room with ID " << fromR->getId() << " unlocked." << std::endl;
+    }
+    if (toR && !toR->isAvailable()){
+        toR->setAvailable(true);
+        std::cout << "[DEBUG] Room with ID " << toR->getId() << " unlocked." << std::endl;
+    }
+
 }
 
 std::vector<int> DungeonGraph::getShortestRoomPath(int startRoomId, int targetRoomId)
