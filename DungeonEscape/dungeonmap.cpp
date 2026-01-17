@@ -228,20 +228,43 @@ std::vector<TileCoord> DungeonMap::findFullPath(TileCoord startTile, TileCoord t
 
         // Find room exit tile
         TileCoord roomExit{ -1, -1 };
+        TileCoord bestExit{ -1, -1 };
         for (RoomView& rv : roomViews) {
             RoomNode* node = rv.getRoomNode();
             if (node && node->getId() == currentRoomId) {
                 // Look for an entrance that is adjacent to the passage entrance
+                int minDist = 10000;
                 for (const TileCoord& e : rv.getEntrances()) {
-                    if (areAdjacent(e, passageEnter)) {
+                    int d = std::abs(e.x - passageEnter.x) + std::abs(e.y - passageEnter.y); // Manhattan distance
+                    if (d < minDist) {
+                        minDist = d;
+                        bestExit = e;
+                    }
+                    /*if (areAdjacent(e, passageEnter)) {
                         roomExit = e;
                         break;
-                    }
+                    }*/
                 }
+                roomExit = bestExit;
             }
         }
 
-        if (roomExit.x == -1) return {};
+        //if (roomExit.x == -1) return {};
+        if (roomExit.x != -1) {
+            std::cout << "[DEBUG] Room " << currentRoomId
+                << " -> " << nextRoomId
+                << " selected roomExit tile: ("
+                << roomExit.x << "," << roomExit.y << ")"
+                << " adjacent to passageEnter: ("
+                << passageEnter.x << "," << passageEnter.y << ")"
+                << std::endl;
+        }
+        else {
+            std::cout << "[DEBUG] Room " << currentRoomId
+                << " -> " << nextRoomId
+                << " NO roomExit found!" << std::endl;
+            return {};
+        }
         //------------------------
 
         waypoints.push_back(roomExit);      // room entrance/exit waypoint
