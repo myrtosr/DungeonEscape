@@ -110,12 +110,14 @@ void GameState::updateEndScreen()
 	// We need to make views dynamically allocated as well.
 	// Cause if we simply delete graph logic the pointers the view objects have become dangling. 
 	// So frist delete views, then delete graph entities... we need none of them for the exit screen
-	//mymap.clear();
-	//mygraph.clear();
+	
 	
 
 	if (!endInitialized) {
 		graphics::playMusic(std::string(ASSET_PATH) + "victory.mp3", 0.6f, false);
+		// all other deletes (player...)
+		//mymap.clear();
+		//mygraph.clear();
 		endInitialized = true;
 	}
 
