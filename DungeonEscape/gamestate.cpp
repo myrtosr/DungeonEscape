@@ -116,8 +116,8 @@ void GameState::updateEndScreen()
 	if (!endInitialized) {
 		graphics::playMusic(std::string(ASSET_PATH) + "victory.mp3", 0.6f, false);
 		// all other deletes (player...)
-		//mymap.clear();
-		//mygraph.clear();
+		my_map.clear();
+		mygraph.clear();
 		endInitialized = true;
 	}
 
@@ -302,11 +302,11 @@ void GameState::handleDoorClick(int r, int c)
 
 		if (player->hasKey(door->getId())) {
 			door->unlock(mygraph); 
-			std::vector<RoomView>& rooms = my_map.getRoomViews();
+			std::vector<RoomView*>& rooms = my_map.getRoomViews();
 
-			for (RoomView& rv : rooms) {
-				if (rv.getRoomNode()->getId() == door->getId()) {
-					rv.addEntrance({ r, c });
+			for (RoomView* rv : rooms) {
+				if (rv->getRoomNode()->getId() == door->getId()) {
+					rv->addEntrance({ r, c });
 					break;
 				}
 			}

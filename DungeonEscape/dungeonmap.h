@@ -12,15 +12,16 @@ class DungeonMap {
 	TileMap tileMap;
 	DungeonGraph* graph;
 
-	std::vector<RoomView> roomViews;
-	std::vector<PassageView> passageViews;
+	std::vector<RoomView*> roomViews;
+	std::vector<PassageView*> passageViews; 
 	std::vector<Door*> doors;
 	
 public:
 	DungeonMap(DungeonGraph* graph)
 		: graph(graph) {
 	};
-
+	void clear();
+	~DungeonMap() { clear(); }
 
 	TileMap& getTileMap() { return tileMap; };
 	const TileMap& getTileMap() const { return tileMap; }
@@ -34,10 +35,8 @@ public:
 	Door* getDoorAt(int r, int c);
 	RoomNode* getRoomAt(int r, int c);
 
-	std::vector<RoomView>& getRoomViews();
+	std::vector<RoomView*>& getRoomViews();
 
-
-	bool areAdjacent(const TileCoord& t1, const TileCoord& t2);
 	std::vector<TileCoord> findFullPath(TileCoord startTile, TileCoord targetTile);
 
 	// Runtime handling

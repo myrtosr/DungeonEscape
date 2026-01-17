@@ -186,17 +186,21 @@ void DungeonGraph::clear()
 {
     // Delete rooms
     for (RoomNode* r : rooms) {
+        std::cout << "[DEBUG] Deleting room " << r->getId() << std::endl;
         delete r;
     }
     rooms.clear();
     roomsById.clear();
+    std::cout << "[DEBUG] Structures used for rooms cleared!" << std::endl;
 
     // Delete edges / passages
     for (Passage* p : passages) {
+        std::cout << "[DEBUG] Deleting passage " << p->getId() << std::endl;
         delete p;
     }
     passages.clear();
     passagesById.clear();
+    std::cout << "[DEBUG] Structures used for passages cleared!" << std::endl;
 
 }
 
