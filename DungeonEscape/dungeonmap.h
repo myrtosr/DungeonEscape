@@ -36,6 +36,8 @@ public:
 
 	std::vector<RoomView>& getRoomViews();
 
+
+	bool areAdjacent(const TileCoord& t1, const TileCoord& t2);
 	std::vector<TileCoord> findFullPath(TileCoord startTile, TileCoord targetTile);
 
 	// Runtime handling

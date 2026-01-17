@@ -28,6 +28,7 @@ public:
 	Passage* getPassage() const { return passage; }
 	TileCoord getFirstTile() const { return first; }
 	TileCoord getLastTile() const { return last; }
-
+	TileCoord getCorner() const { return corner; }
+	bool isCornered() const { return (corner.x != -1) && (corner.y != -1); }
 	void applyToTileMap(TileMap& map);
 };

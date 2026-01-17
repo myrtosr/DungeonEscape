@@ -1,4 +1,8 @@
 #include "dungeonmap.h"
+#include <cstdlib>
+#include "sgg\graphics.h"
+#include <iostream>
+#include "config.h"
 
 void DungeonMap::buildViews()
 {
@@ -145,6 +149,13 @@ std::vector<RoomView>& DungeonMap::getRoomViews()
 
 
 
+bool DungeonMap::areAdjacent(const TileCoord& t1, const TileCoord& t2)
+{
+    int dx = std::abs(t1.x - t2.x);
+    int dy = std::abs(t1.y - t2.y);
+    return (dx+dy == 1);
+}
+
 std::vector<TileCoord> DungeonMap::findFullPath(TileCoord startTile, TileCoord targetTile)
 {
     // Vector to store and return the final tile path the player will follow tile-by-tile
@@ -171,20 +182,94 @@ std::vector<TileCoord> DungeonMap::findFullPath(TileCoord startTile, TileCoord t
     // Call Dijkstra to find shortest room-to-room (node-to-node) path
     // The path is given with a vector with roomIDs in the order we must traverse the rooms
     std::vector<int> roomPath = graph->getShortestRoomPath(startRoomId, targetRoomId);
+    std::cout << "[DEBUG] Shortest room path: ";
+    for (auto i : roomPath) std::cout << i << ' ';
 
     if (roomPath.empty())
         return fullPath; // Returning empty path in case of Dijkstra failure
 
-    // The hard part: Building the tile path by connecting rooms via passages
-    // Logic:
-    // For each consecutive pair of rooms in roomPath:
-    // 1. Find which passage connects them
-    // 2. Find the room exit tile inside current room
-    // 3. Find the passage entrance tile (first/last depending on roomFrom/roomTo)
-    // 4. BFS from currentTile -> passage entrance
-    // 5. BFS along the passage
-    // 6. BFS from passage exit -> targetTile
+    //------------------------
+    std::vector<TileCoord> waypoints;
+    waypoints.push_back(startTile); /// First waypoint -> start tile
 
+    for (size_t i = 0; i < roomPath.size() - 1; ++i) { // For each consecutive pair of rooms
+        
+        int currentRoomId = roomPath[i];
+        int nextRoomId = roomPath[i + 1];
+
+        // Find passage that connects the two rooms
+        PassageView* passage = nullptr;
+
+        for (PassageView& pv : passageViews) {
+            Passage* p = pv.getPassage();
+            if ((p->getRoomFromId() == currentRoomId &&
+                p->getRoomToId() == nextRoomId) ||
+                (p->getRoomFromId() == nextRoomId &&
+                    p->getRoomToId() == currentRoomId)) {
+                passage = &pv;
+                break;
+            }
+        }
+        if (!passage)
+            return {};
+
+        // Decide direction (for backtracking?)
+        bool forward =
+            passage->getPassage()->getRoomFromId() == currentRoomId;
+
+        TileCoord passageEnter =
+            forward ? passage->getFirstTile()
+            : passage->getLastTile();
+
+        TileCoord passageExit =
+            forward ? passage->getLastTile()
+            : passage->getFirstTile();
+        //------------------------
+
+        // Find room exit tile
+        TileCoord roomExit{ -1, -1 };
+        for (RoomView& rv : roomViews) {
+            RoomNode* node = rv.getRoomNode();
+            if (node && node->getId() == currentRoomId) {
+                // Look for an entrance that is adjacent to the passage entrance
+                for (const TileCoord& e : rv.getEntrances()) {
+                    if (areAdjacent(e, passageEnter)) {
+                        roomExit = e;
+                        break;
+                    }
+                }
+            }
+        }
+
+        if (roomExit.x == -1) return {};
+        //------------------------
+
+        waypoints.push_back(roomExit);      // room entrance/exit waypoint
+        waypoints.push_back(passageEnter);  // passage entrance waypoint
+        if (passage->isCornered()) {
+            waypoints.push_back(passage->getCorner()); // Γ-shaped
+        }
+        waypoints.push_back(passageExit); // passage exit waypoint
+    }
+
+    waypoints.push_back(targetTile); // last waypoint -> target tile
+
+    for (size_t i = 0; i < waypoints.size() - 1; ++i) {
+        TileCoord from = waypoints[i];
+        TileCoord to = waypoints[i + 1];
+
+        std::vector<TileCoord> segment = tileMap.findTilePath(from, to);
+        if (segment.empty()) return {}; // failed segment
+
+        // Avoid duplicating the starting tile
+        if (!fullPath.empty()) segment.erase(segment.begin());
+
+        fullPath.insert(fullPath.end(), segment.begin(), segment.end());
+    }
+
+    std::cout << "[DEBUG] Waypoints: ";
+    for (auto w : waypoints) std::cout << "(" << w.x << ", " << w.y << ")" << std::endl;
+    return fullPath;
 
 }
 
