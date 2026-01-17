@@ -57,7 +57,7 @@ void GameState::updateStartScreen()
 				status = STATUS_PLAYING;
 			}
 			else if (b.getTexture() == "quit.png") {
-				status = STATUS_END;
+				status = STATUS_QUIT;
 			}
 		}
 	}
@@ -99,6 +99,9 @@ void GameState::updateLevelScreen()
 	my_map.update(); // DungeonMap updates the tile types
 
 	player->update();
+
+	// Game Victory
+	if ((player->getPos().x == 13) && (player->getPos().y == 32)) status = STATUS_END;
 }
 
 void GameState::updateEndScreen()
