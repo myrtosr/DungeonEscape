@@ -27,4 +27,5 @@ public:
 	void addPassage(Passage* p);
 
 	void unlock();
+	// to do 1
 };
