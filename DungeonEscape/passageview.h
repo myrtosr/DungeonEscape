@@ -6,13 +6,10 @@
 
 class PassageView {
 	Passage* passage; // pointer to corresponding passage-edge 
-	// Conenction to passages could also be achieved with passageID since it's a unique property?
-
 	
 	TileCoord first; // the first tile of a passage
 	TileCoord last;  // the last tile of a passage
 	TileCoord corner; // corner in case of cornered passage
-	// Assuming passages only have height = 1 tile, I changed the names a bit
 
 public:
 	// Constructor for straight passages
@@ -24,11 +21,13 @@ public:
 	PassageView(Passage* p, TileCoord f, TileCoord l, TileCoord c)
 		: passage(p), first(f), last(l), corner(c) {
 	}
+
 	// Getters
 	Passage* getPassage() const { return passage; }
 	TileCoord getFirstTile() const { return first; }
 	TileCoord getLastTile() const { return last; }
 	TileCoord getCorner() const { return corner; }
 	bool isCornered() const { return (corner.x != -1) && (corner.y != -1); }
+
 	void applyToTileMap(TileMap& map);
 };

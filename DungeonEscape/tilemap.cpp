@@ -43,7 +43,7 @@ std::vector<TileCoord> TileMap::findTilePath(TileCoord start, TileCoord target)
     int rows = GRID_HEIGHT;
     int cols = GRID_WIDTH;
 
-    // Info needed for BFS stored in 2D vectors
+    // Info needed for BFS stored in vectors
     // visited
     std::vector<std::vector<bool>> visited(
         rows, std::vector<bool>(cols, false));
@@ -51,7 +51,7 @@ std::vector<TileCoord> TileMap::findTilePath(TileCoord start, TileCoord target)
     std::vector<std::vector<TileCoord>> prev(
         rows, std::vector<TileCoord>(cols, {-1,-1}));
 
-    // initialization of queue needed for BFS
+    // Queue needed for BFS
     std::queue<TileCoord> q;
     q.push(start);
     visited[start.x][start.y] = true;
@@ -66,7 +66,7 @@ std::vector<TileCoord> TileMap::findTilePath(TileCoord start, TileCoord target)
         TileCoord current = q.front();
         q.pop();
 
-        // if reach target tile stop BFS algorithm
+        // If target tile reached -> stop BFS
         if (current.x == target.x && current.y == target.y) {
             break;
         }
@@ -76,12 +76,12 @@ std::vector<TileCoord> TileMap::findTilePath(TileCoord start, TileCoord target)
             int nX = current.x + dx[i];
             int nY = current.y + dy[i];
 
-            // boundary check
+            // Boundary check
             if (nX < 0 || nX >= rows || nY < 0 || nY >= cols) {
                 continue;
             }
 
-            // tile-type check
+            // Tile-type check
             Tile& tile = at(nX, nY);
             if (tile.getType() != TileType::FLOOR && tile.getType() != TileType::PASSAGE) {
                 continue;
@@ -98,12 +98,12 @@ std::vector<TileCoord> TileMap::findTilePath(TileCoord start, TileCoord target)
         }
     }
 
-    // if target not visited return empty path
+    // If target not visited return empty path
     if (!visited[target.x][target.y]) {
         return path;
     }
 
-    // construct path: target -> start
+    // Construct path: target -> start
     TileCoord c = target;
     while (!(c.x == start.x && c.y == start.y)) {
         path.push_back(c);
@@ -111,7 +111,7 @@ std::vector<TileCoord> TileMap::findTilePath(TileCoord start, TileCoord target)
     }
     path.push_back(start);
 
-    // Return the path in the right order: start -> target
+    // Return the path in correct order: start -> target
     std::reverse(path.begin(), path.end());
 
     return path;
@@ -159,7 +159,6 @@ void TileMap::draw()
         
         // Visual feedback for hover and click
         if (isHovered(t.getX(), t.getY())) {
-            // 53, 37, 108
             br.outline_opacity = 1.0f;
             br.outline_color[0] = 53 / 255.0f;
             br.outline_color[1] = 37 / 255.0f;

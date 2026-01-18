@@ -24,7 +24,7 @@ class GameState {
 	void drawQuitScreen();
 	//------------------------
 	// Mouse handling
-	graphics::MouseState mouse; // keep this in check in the future - its uninitialized idk if that could cause problems, probs not
+	graphics::MouseState mouse;
 	float cx = 0.0f;
 	float cy = 0.0f;
 	bool inside_canvas = false;
@@ -43,17 +43,14 @@ class GameState {
 	DungeonMap my_map;
 	// Player Initialization
 	Player* player = nullptr;
-	bool player_initialized = false;
 	//------------------------
 	std::vector<Key*> keys;
 	// Button Initialization
 	std::vector<Button> startButtons; // All buttons for the start menu
 	std::vector<Button> endButtons; // All buttons for the end screen
-	// we can add more buttons for other states of the game if we want :)
-	// Handling message outputs with time for end & quit screen
+	// Handling goodbye message output with time for quit screen
 	bool quitting = false;        // quit screen sequence starts
 	float quitStartTime = -1.0f;  // global time when quit screen started
-
 	bool ending = false;          // true when exit screen sequence starts
 	float endStartTime = -1.0f;   // global time when end screen started
 	//------------------------
@@ -71,15 +68,18 @@ public:
 	float window2canvasY(float y);
 	void setWindowDimensions(unsigned int w, unsigned int h) { window_width = w; window_height = h; }
 	void onWindowResized(unsigned int w, unsigned int h);
+	//------------------------
 	void setDebugMode(bool d) { debug = d; }
 	bool getDebugMode() const { return debug; }
 
 	DungeonMap& getDungeonMap() { return my_map; }
 	const DungeonMap& getDungeonMap() const { return my_map; }
 
+	// Key game objects
 	Key* getKeyAt(int r, int c);
 	void removeKey(Key* key);
 	void initializeKeys();
+	//------------------------
 
 	// Constructor & Destructor 
 	GameState() : my_map(&mygraph) {};

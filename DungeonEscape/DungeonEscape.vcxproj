@@ -144,7 +144,6 @@
     <ClCompile Include="door.cpp" />
     <ClCompile Include="dungeongraph.cpp" />
     <ClCompile Include="dungeonmap.cpp" />
-    <ClCompile Include="gameobject.cpp" />
     <ClCompile Include="gamestate.cpp" />
     <ClCompile Include="key.cpp" />
     <ClCompile Include="main.cpp" />

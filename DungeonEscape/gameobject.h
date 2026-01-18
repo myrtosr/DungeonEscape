@@ -1,7 +1,5 @@
 #pragma once
 
-// class Collidable {}
-
 class GameObject {
 protected:
 	const class GameState& gamestate;

@@ -3,12 +3,15 @@
 // defining the initial window size
 #define WINDOW_WIDTH 1680
 #define WINDOW_HEIGHT 960
+
 // defining the canvas size
 #define CANVAS_WIDTH 1680
 #define CANVAS_HEIGHT 960
+
 // Defining the grid map size
 #define TILE_SIZE 48
 #define GRID_WIDTH (CANVAS_WIDTH / TILE_SIZE)
 #define GRID_HEIGHT (CANVAS_HEIGHT / TILE_SIZE)
+
 // Defining our infinite logic
 #define INF 100000

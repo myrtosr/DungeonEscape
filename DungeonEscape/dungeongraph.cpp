@@ -13,7 +13,6 @@ void DungeonGraph::addRoom(RoomNode* room)
     if (!room) return;
     rooms.push_back(room);
 
-    // adding to the hash map
     roomsById[room->getId()] = room;
 }
 
@@ -22,13 +21,12 @@ void DungeonGraph::addPassage(Passage* passage)
     if (!passage) return;
     passages.push_back(passage);
 
-    // adding to the hash map
-    passagesById[passage->getId()] = passage; //??
+    passagesById[passage->getId()] = passage;
 }
 
 
 void DungeonGraph::initializeGraphStructure() {
-    // constructing the 8 RoomNodes of our graph
+    // Constructing the 8 RoomNodes of our graph
     for (int i = 1; i <= 8; i++) { // 1 = start node and 8 = exit node
         addRoom(new RoomNode(i));
     }
@@ -48,8 +46,7 @@ void DungeonGraph::initializeGraphStructure() {
     addPassage(new Passage(9, 7, 2));
     addPassage(new Passage(10, 7, 8));
 
-    // Passage weights will be set later based on corridor length in tiles 
-    // (computed from the GridMap?)
+    // Passage weights will be calculated based on passage length (number of tiles) in tilemap construction
 }
 
 RoomNode* DungeonGraph::getRoomById(int id)
@@ -96,7 +93,7 @@ std::vector<int> DungeonGraph::getShortestRoomPath(int startRoomId, int targetRo
         visited[id] = false; // initiate all rooms as unvisited
     }
 
-    // Our roomIds start with 1 and ends at 8
+    // Note: our roomIds start with 1 and end at 8
     distance[startRoomId] = 0; // distance of the first room = 0
 
     // Main Loop
@@ -121,7 +118,7 @@ std::vector<int> DungeonGraph::getShortestRoomPath(int startRoomId, int targetRo
         // Mark this room as Visited
         visited[currentRoomId] = true;
 
-        // Reach target room -> shortest path found
+        // Reach target room -> shortest path found -> stop
         if (currentRoomId == targetRoomId)
             break;
 
@@ -171,6 +168,7 @@ std::vector<int> DungeonGraph::getShortestRoomPath(int startRoomId, int targetRo
     if (distance[current] >= INF) {
         return path;
     }
+
     while (current != -1) {
         path.push_back(current);
         current = previous[current];
@@ -209,7 +207,6 @@ DungeonGraph::DungeonGraph()
 {
 }
 
-// Deleting dynamically created objects
 DungeonGraph::~DungeonGraph()
 {
     clear();

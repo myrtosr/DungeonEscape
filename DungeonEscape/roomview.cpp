@@ -58,7 +58,6 @@ void RoomView::applyToTileMap(TileMap& map) {
 			else {
 				tile.setType(TileType::FLOOR);
 				tile.setClickable(true);
-				//tile.setClickable(roomNode->isAvailable());
 			}
 
 			for (TileCoord e : entrances) {

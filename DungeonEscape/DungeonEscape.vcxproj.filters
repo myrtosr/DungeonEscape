@@ -21,9 +21,6 @@
     <ClCompile Include="gamestate.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="gameobject.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="tilemap.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>

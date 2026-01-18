@@ -5,11 +5,11 @@
 
 class RoomView {
 	RoomNode* roomNode; // pointer to corresponding room node 
-	// Conenction to roomnode could also be achieved with roomID since it's a unique property?
 
 	TileCoord topLeft; // the first tile of a room
 	TileCoord bottomRight;  // the last tile of a room
 	// The bounds of the room get calculated based on those
+
 	std::vector<TileCoord> entrances; // tiles that act as entrances - with no door logic applied
 
 public:

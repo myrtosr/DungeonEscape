@@ -14,7 +14,7 @@ class Player : public GameObject {
 	std::vector<TileCoord> path; // Player moves tile by tile ... smooth animation later
 	int pathIndex = 0;
 	bool moving;
-	float speed;
+
 	std::vector<int> keyInventory;
 public:
 	// Constructor & Destructor
@@ -25,7 +25,7 @@ public:
 	void draw() override;
 	void init() override;
 
-	void spawnAt(TileCoord tile, int start); // idk about this tbh
+	void spawnAt(TileCoord tile, int start);
 
 	// Getters
 	bool isMoving() const { return moving; }

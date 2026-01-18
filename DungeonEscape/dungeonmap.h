@@ -17,6 +17,7 @@ class DungeonMap {
 	std::vector<Door*> doors;
 	
 public:
+	// Constructor & Destructor
 	DungeonMap(DungeonGraph* graph)
 		: graph(graph) {
 	};
@@ -27,9 +28,9 @@ public:
 	const TileMap& getTileMap() const { return tileMap; }
 
 	// Initializing our setup
-	void buildViews(); // building RoomView / PassageView / DoorView
-	void initializeDoorTiles();
-	void initializeTiles(); // passes tileTypes in TileMap
+	void buildViews(); // building RoomView / PassageView
+	void initializeDoorTiles(); // building Doors
+	void initializeTiles(); // passing tileTypes to TileMap
 	//------------------------
 
 	Door* getDoorAt(int r, int c);

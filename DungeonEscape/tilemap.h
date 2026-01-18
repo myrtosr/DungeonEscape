@@ -14,8 +14,7 @@ class TileMap {
 	int clickedCol = -1;
 
 public:
-	// WHO CREATES THE GRID -> GAMESTATE!!! -> DungeonMap not TileMap
-	// So we get default constructor
+	// Constructor
 	TileMap();
 
 	Tile& at(int row, int col);
@@ -32,8 +31,9 @@ public:
 	void clearClicked() { clickedRow = clickedCol = -1; }
 	bool isClicked(int row, int col) const { return row == clickedRow && col == clickedCol; }
 	//------------------------
+	// Finding the shortest path form a start tile to a target tile using BFS algorithm
 	std::vector<TileCoord> findTilePath(TileCoord start, TileCoord target);
-	// Drawing stuff
+	// Drawing stuff :)
 	void draw();
 	void drawGridDebug();
 };

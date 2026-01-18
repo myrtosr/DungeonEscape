@@ -7,6 +7,7 @@
 
 
 class DungeonGraph {
+	// Vectors for fast iteration, maps for fast access
 	std::vector<RoomNode*> rooms;
 	std::unordered_map<int, RoomNode*> roomsById;
 	std::vector<Passage*> passages;
@@ -16,15 +17,13 @@ public:
 	void addRoom(RoomNode* room);
 	void addPassage(Passage* passage);
 
-	//pathfind method
-	//updateWeight() 
-
 	void initializeGraphStructure();
 	RoomNode* getRoomById(int id);
 	Passage* getPassageById(int id);
 
 	void unlockRoomsFromPassage(Passage* p);
 
+	// Pathfinding for shortest roompath using Dijkstra algorithm
 	std::vector<int> getShortestRoomPath(int startRoomId, int targetRoomId);
 
 	void clear();

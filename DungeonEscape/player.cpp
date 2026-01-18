@@ -32,17 +32,12 @@ void Player::update()
     if(!path.empty()) {
         // Move one tile along the path
         pos = path.front();   // teleport to next tile
-        path.erase(path.begin());     // remove tile from path
-
-        // Optional: you can add animation logic here instead of instant teleport
-        // Example: lerp from old position to new for smooth animation
+        path.erase(path.begin());     // remove tile from pat
      }
 
     if (path.empty()) {
         moving = false;  // finished moving
     }
-
-    // if position == ending tile {13,32} (entrance[7]) -> go to Exit State
 }
 
 void Player::draw()
@@ -64,7 +59,6 @@ void Player::init()
 {
 	currentRoomId = 0;
 	moving = false;
-	float speed = 6.0f; // idk what this should be... we'll see in due time
 	path.clear();
 }
 

@@ -22,7 +22,8 @@ void GameState::init() {
 		60,
 		"quit.png"
 		});
-
+	//------------------------
+	
 	// End Screen Buttons
 	endButtons.push_back({
 		CANVAS_WIDTH / 2,
@@ -38,7 +39,6 @@ void GameState::init() {
 	// Grid and Views Initialization
 	my_map.buildViews();
 	my_map.init();
-
 	initializeKeys();
 
 	// Player Initialization
@@ -93,7 +93,7 @@ void GameState::updateLevelScreen()
 					return;
 				}
 				// Floor tile is clicked
-				if (t.getType() == TileType::FLOOR || t.getType() == TileType::DOOR_OPEN) {
+				if (t.getType() == TileType::FLOOR) {
 					handleFloorClick(row, col);
 					return;
 				}
@@ -107,7 +107,7 @@ void GameState::updateLevelScreen()
 	player->update();
 
 	// Game Victory
-	if ((player->getPos().x == 13) && (player->getPos().y == 32)) {
+	if ((player->getPos().x == 13) && (player->getPos().y == 32)) { // If player reaches exit tile {13, 32} -> Game ends
 		status = STATUS_END;
 		graphics::stopMusic();
 	}

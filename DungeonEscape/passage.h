@@ -16,7 +16,7 @@ class Passage {
 
 public:
 
-	// Constructors & Destructor
+	// Constructors
 	Passage(int id, int from, int to)
 		: id(id), roomFromId(from), roomToId(to) {
 	};
@@ -27,10 +27,10 @@ public:
 
 	// Setters & getters
 	void setWeight(int w) { weight = w; }
-	int getWeight() { return weight; }
+	int getWeight() const { return weight; }
 
 	void setRealWeight(int rw) { realWeight = rw; }
-	int getRealWeight() { return realWeight; }
+	int getRealWeight() const { return realWeight; }
 	
 	int getId() const { return id; }
 
