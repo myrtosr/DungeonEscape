@@ -27,6 +27,8 @@ void DungeonMap::clear()
         std::cout << "[DEBUG] Deleting door of room " << d->getId() << std::endl;
         delete d;
     }
+    doors.clear();
+    std::cout << "[DEBUG] Structure used for doors cleared!" << std::endl;
 }
 
 void DungeonMap::buildViews()
